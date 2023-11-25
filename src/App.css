@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.border1{
+  border: 2px solid red;
+}
+
+.text1{
+  color: #ff6861;
+}
+.background1{
+  background-color:whitesmoke;
+}
+
+.text2{
+  color:#7799fa;
+}
+
+.text3{
+  color:#638ceb;
+}
+
+.nav-link:hover{
+  color: #7799fa !important;
+}
+
+.background1{
+  background-color: #ff6861;
+}
+
+.background2{
+  background-color:#7799fa;
+}
