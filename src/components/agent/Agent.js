@@ -1,21 +1,25 @@
 import React from 'react'
-import employee from '../../images/employees.png'
+import profile from '../../images/profile.png'
 import plan from '../../images/plan.jpg'
 import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
-
+import marketting from '../../images/What-is-marketing.webp'
+import customer from '../../images/customer.jpg'
+import insurace_account from '../../images/insurance_account.png'
+import payment from '../../images/payment.png'
+import commission from '../../images/commission.webp'
 const Agent = () => {
     return (
         <div>
             <Navbar></Navbar>
             <div className='background2 text-center display-3 py-3 text-white fw-bold'>Agent Dashboard</div>
             <div className='container'>
-                
+
                 <div className='row my-5'>
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={profile} className='rounded-pill'
                                     style={{
                                         height: "10rem",
                                         width: "10rem"
@@ -31,9 +35,9 @@ const Agent = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={plan} className=' img-fluid pe-5'
+                                <img src={marketting} className=' img-fluid pe-5'
                                     style={{
-                                        
+
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
@@ -48,9 +52,9 @@ const Agent = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={customer} className='rounded-pill'
                                     style={{
-                                      
+
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
@@ -67,9 +71,9 @@ const Agent = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={insurace_account} className='rounded-pill'
                                     style={{
-                                        
+
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
@@ -84,9 +88,9 @@ const Agent = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={payment} className='rounded-pill'
                                     style={{
-                                      
+
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
@@ -101,9 +105,9 @@ const Agent = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={commission} className='rounded-pill'
                                     style={{
-                                      
+
                                         height: "10rem",
                                         width: "10rem"
                                     }} />

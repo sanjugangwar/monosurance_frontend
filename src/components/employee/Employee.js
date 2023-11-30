@@ -1,6 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import profile from '../../images/profile.png'
+import docoument from '../../images/documents.webp'
+import Navbar from '../navbar/Navbar'
+import Footer from '../navbar/Footer'
+import insurace_account from '../../images/insurance_account.png'
+import commission from '../../images/commission.webp'
+import agents from '../../images/agents.jpeg'
+import queries from '../../images/queries.jpg'
+import { useNavigate } from 'react-router-dom'
+
 
 const Employee = () => {
+
+    const [valid, setValid] = useState(false);
+    const navigate=new useNavigate();
+
+    const validateUser = () => {
+        if (localStorage.getItem('token') == null || localStorage.getItem('role') == null || localStorage.getItem('role') != 'ROLE_EMPLOYEE') {
+            alert("You are not logged in ")
+            navigate('/');
+        }
+        setValid(true);
+    }
+
+    useEffect(
+        ()=>{
+            // validateUser();
+        }
+        ,[]
+    )
+
     return (
         <div>
             <Navbar></Navbar>
@@ -11,7 +40,7 @@ const Employee = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={profile} className='rounded-pill'
                                     style={{
                                         height: "10rem",
                                         width: "10rem"
@@ -27,14 +56,14 @@ const Employee = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={plan} className=' img-fluid pe-5'
+                                <img src={agents} className=' img-fluid pe-5'
                                     style={{
 
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
                                 <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Marketting</div>
+                                    <div className='text2 fw-bold fs-1'>Agents</div>
                                     <button className='btn btn-lg btn-outline-success'>View More</button>
                                 </div>
 
@@ -44,14 +73,14 @@ const Employee = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={docoument} className='rounded-pill'
                                     style={{
 
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
                                 <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Customers</div>
+                                    <div className='text2 fw-bold fs-1'>Customer Documents</div>
                                     <button className='btn btn-lg btn-outline-success'>View More</button>
                                 </div>
 
@@ -63,7 +92,7 @@ const Employee = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={insurace_account} className='rounded-pill'
                                     style={{
 
                                         height: "10rem",
@@ -80,14 +109,14 @@ const Employee = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={queries} className='rounded-pill'
                                     style={{
 
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
                                 <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Policy Payment</div>
+                                    <div className='text2 fw-bold fs-1'>Customer Queries</div>
                                     <button className='btn btn-lg btn-outline-success'>View More</button>
                                 </div>
 
@@ -97,14 +126,14 @@ const Employee = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={commission} className='rounded-pill'
                                     style={{
 
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
                                 <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Commission</div>
+                                    <div className='text2 fw-bold fs-1'> Agents Commission</div>
                                     <button className='btn btn-lg btn-outline-success'>View More</button>
                                 </div>
 

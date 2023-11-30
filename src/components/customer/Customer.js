@@ -3,6 +3,10 @@ import employee from '../../images/employees.png'
 import plan from '../../images/plan.jpg'
 import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
+import profile from '../../images/profile.png'
+import queries from '../../images/queries.jpg'
+import document from '../../images/documents.webp'
+import payment from '../../images/payment.png'
 const Customer = () => {
     return (
         <div>
@@ -14,12 +18,12 @@ const Customer = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={profile} className='rounded-pill'
                                     style={{
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
-                                <div className='d-block '>
+                                <div className='d-block ms-3'>
                                     <div className='text2 fw-bold fs-1'>Profile</div>
                                     <button className='btn btn-lg btn-outline-success'>View More</button>
                                 </div>
@@ -37,7 +41,7 @@ const Customer = () => {
                                         width: "10rem"
                                     }} />
                                 <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Marketting</div>
+                                    <div className='text2 fw-bold fs-1'>Policies</div>
                                     <button className='btn btn-lg btn-outline-success'>View More</button>
                                 </div>
 
@@ -47,14 +51,14 @@ const Customer = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={queries} className='rounded-pill'
                                     style={{
 
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
                                 <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Customers</div>
+                                    <div className='text2 fw-bold fs-1'>Queries</div>
                                     <button className='btn btn-lg btn-outline-success'>View More</button>
                                 </div>
 
@@ -66,14 +70,14 @@ const Customer = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={document} className='rounded-pill'
                                     style={{
 
                                         height: "10rem",
                                         width: "10rem"
                                     }} />
                                 <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Insurance Accounts</div>
+                                    <div className='text2 fw-bold fs-1'>Your Documents</div>
                                     <button className='btn btn-lg btn-outline-success'>View More</button>
                                 </div>
 
@@ -83,7 +87,7 @@ const Customer = () => {
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
+                                <img src={payment} className='rounded-pill'
                                     style={{
 
                                         height: "10rem",
@@ -91,23 +95,6 @@ const Customer = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Policy Payment</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-4'>
-                        <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={employee} className='rounded-pill'
-                                    style={{
-
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Commission</div>
                                     <button className='btn btn-lg btn-outline-success'>View More</button>
                                 </div>
 

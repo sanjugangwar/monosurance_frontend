@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
 
     useEffect(() => {
 
-    }, [localStorage.getItem('auth')])
+    }, [localStorage.getItem('token')])
+
+    const navigate=new useNavigate();
+
 
     return (
         <>
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light shadow" style={{ backgroundColor: "#e6d0e6" }}>
                 <div className="container-fluid ms-5">
-                    <a className="navbar-brand text-primary fw-bold fs-2 ps-5" href="#"> <i class="bi bi-buildings-fill"></i> MonoSurance</a>
+                    <a className="navbar-brand text-primary fw-bold fs-2 ps-5" href="/"> <i class="bi bi-buildings-fill"></i> MonoSurance</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -47,9 +51,10 @@ const Navbar = () => {
                         <div className='d-flex '>
                             {
                                 localStorage.getItem('auth') == null ? <a className='btn btn-outline-primary px-3 fw-bold' href='/login'>Login</a> :
-                                    <a className='btn btn-outline-primary px-3 fw-bold' href='/logout' onClick={
+                                    <a className='btn btn-outline-primary px-3 fw-bold'  onClick={
                                         (e) => {
                                             localStorage.clear();
+                                            navigate('/login')
                                         }
                                     }>Logout</a>
                             }

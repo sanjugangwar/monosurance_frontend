@@ -29,11 +29,11 @@ const Contact = () => {
                                     <div class="col">
                                         <label for="email_addr">Your Email:</label>
                                         <input type="email" required maxlength="50" class="form-control" id="email_addr" name="email"
-                                            placeholder="name@example.com"/>
+                                            placeholder=""/>
                                     </div>
                                 </div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-success">Post</button>
+                                    <button type="submit" class="btn btn-primary">Post</button>
                                 </div>
                             </form>
                         </div>

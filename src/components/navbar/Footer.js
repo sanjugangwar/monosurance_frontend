@@ -56,10 +56,13 @@ const Footer = () => {
                                     Useful links
                                 </h6>
                                 <p>
-                                    <a href="#!" className="text-reset">Home</a>
+                                    <a href="/" className="text-reset">Home</a>
                                 </p>
                                 <p>
-                                    <a href="#!" className="text-reset">Plans</a>
+                                    <a href="#" className="text-reset">Plans</a>
+                                </p>
+                                <p>
+                                    <a href="#!" className="text-reset">About Us</a>
                                 </p>
                                 <p>
                                     <a href="#!" className="text-reset">About Us</a>
