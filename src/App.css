@@ -67,3 +67,17 @@
 .background2{
   background-color:#7799fa;
 }
+.background3{
+  background-color: azure;
+}
+
+.sidebutton{
+  padding:1rem ;
+  font-size:2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.nav-link:hover{
+  color: #ff6861 !important;
+}

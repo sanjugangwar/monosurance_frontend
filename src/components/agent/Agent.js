@@ -8,7 +8,11 @@ import customer from '../../images/customer.jpg'
 import insurace_account from '../../images/insurance_account.png'
 import payment from '../../images/payment.png'
 import commission from '../../images/commission.webp'
+import { useNavigate } from 'react-router-dom'
 const Agent = () => {
+
+    const navigate=new useNavigate();
+
     return (
         <div>
             <Navbar></Navbar>
@@ -26,7 +30,13 @@ const Agent = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Profile</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    onClick={
+                                        ()=>{
+                                            navigate('/agentProfile')
+                                        }
+                                    }
+                                    >View More</button>
                                 </div>
 
                             </div>
@@ -60,7 +70,15 @@ const Agent = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Customers</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={
+                                        ()=>{
+                                            navigate('/agent/addCustomer')
+                                        }
+                                    }
+                                    
+                                    >View More</button>
                                 </div>
 
                             </div>
@@ -68,40 +86,8 @@ const Agent = () => {
                     </div>
                 </div>
                 <div className='row my-5 justify-content-center'>
-                    <div className='col-4'>
-                        <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={insurace_account} className='rounded-pill'
-                                    style={{
-
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Insurance Accounts</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-4'>
-                        <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={payment} className='rounded-pill'
-                                    style={{
-
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Policy Payment</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                   
+                    
                     <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">

@@ -1,10 +1,10 @@
-import axios from "axios"
+import axios from "axios";
 
-export const allAgents=async (pageNumber, pageSize) => {
+export const allCustomers=async (pageNumber, pageSize) => {
 
     try {
         let response = axios.get(
-            'http://localhost:8081/monosurance/allAgents',
+            'http://localhost:8081/monosurance/allCustomer',
             {
                 params: {
                     pageNumber,
@@ -27,11 +27,11 @@ export const allAgents=async (pageNumber, pageSize) => {
 
 }
 
-export const addAgent=async (data)=>{
+export const addCustomer=async (data)=>{
     try {
 
         let response = await axios.post(
-            'http://localhost:8081/monosurance/addagent', data, {
+            'http://localhost:8081/monosurance/addcustomer', data, {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem('auth')
             }
@@ -47,34 +47,12 @@ export const addAgent=async (data)=>{
     }
 }
 
-export const deleteAgent=async(id)=>{
 
-    try {
-
-        let response = await axios.delete(
-            'http://localhost:8081/monosurance/agent', {
-            params: {
-                id
-            },
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem('auth')
-            }
-        }
-        )
-
-        return response;
-    } catch (error) {
-        throw error;
-    }
-
-}
-
-
-export const  getAgentByUsername=()=>{
+export const  getCustomerByUsername=()=>{
 
     try {
         let response = axios.get(
-            'http://localhost:8081/monosurance/agent',
+            'http://localhost:8081/monosurance/customer',
             {
                 params: {
                    username:localStorage.getItem('username')
@@ -96,13 +74,12 @@ export const  getAgentByUsername=()=>{
 
 }
 
-
-export const editAgentPorfile=async (data)=>{
+export const editCustomerPorfile=async (data)=>{
 
     try {
 
         let response = await axios.put(
-            'http://localhost:8081/monosurance/agent', data, {
+            'http://localhost:8081/monosurance/customer', data, {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem('auth')
             }

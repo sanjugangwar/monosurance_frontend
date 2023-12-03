@@ -5,10 +5,12 @@ const Table = (data) => {
     let title = data.title;
     let canDelete = data.canDelete;
     let canUpdate = data.canUpdate;
+    let canViewMore=data.canViewMore
     let modalUsed = data.modal;
 
     const handleUpdate = data.handleUpdate;
     const handleDelete = data.handleDelete;
+    const handleViewMore =data.handleViewMore
 
     let rowOfUsers;
     let headOfusers;
@@ -23,8 +25,10 @@ const Table = (data) => {
     if (data.length > 0) {
 
         let headData = Object.keys(data[0]);
-        if (canDelete || canUpdate)
+        if (canDelete || canUpdate  || canViewMore)
             headData.push('Actions');
+
+
 
         headOfusers = headData.map(
             (d) => {
@@ -53,7 +57,7 @@ const Table = (data) => {
 
 
                     }
-                    {canUpdate || canDelete ?
+                    {canUpdate || canDelete ||canViewMore?
                         <td >
                             {
 
@@ -73,6 +77,11 @@ const Table = (data) => {
                                 canDelete ? <button className='btn btn-outline-danger'
                                     onClick={() => handleDelete(d)}
                                 ><i class="bi bi-trash3-fill me-1"></i> Delete </button> : null
+                            }
+                            {
+                                canViewMore ? <button className='btn btn-outline-danger'
+                                    onClick={() => handleDelete(d)}
+                                ><i class="bi bi-trash3-fill me-1"></i> View More </button> : null
                             }
                         </td>
                         : null}

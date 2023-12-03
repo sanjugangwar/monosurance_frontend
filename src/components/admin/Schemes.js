@@ -3,12 +3,14 @@ import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
 import { allPlans, getSchemeByPlan } from '../../services/admin/AdminServices'
 import Insurance from '../../images/Insurance.png'
+import Table from '../table/Table'
+import AddScheme from './AddScheme'
 
 const Schemes = () => {
 
     const [plans, setPlans] = useState([])
     const [value, setValue] = useState("plan")
-    const [scheme, setScheme] = useState({})
+    const [scheme, setScheme] = useState([])
 
     const getAllPlan = async () => {
         let response = await allPlans(0, 30);
@@ -43,7 +45,7 @@ const Schemes = () => {
         <>
             <Navbar></Navbar>
 
-            <div className='container'>
+            {/* <div className='container-fluid'>
                 <div className='row my-5'>
                     <div className='col-4 offset-4'>
                         <select class="form-select" aria-label="Default select example"
@@ -66,67 +68,41 @@ const Schemes = () => {
 
                         </select>
                     </div>
-                </div>
-
-                {
-                    value != "plan" ?
-                        <div className='my-5 row'>
-
-                            <div>
-
-                                scheme Name :{scheme.schemeName}
-
-                            </div>
-
-                            <div>
-
-                                <img src={Insurance}></img>
-
-                            </div>
-
-
-                            <div>
-
-                                scheme Description :Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, quisquam eaque consectetur minima beatae et alias sint
-                                obcaecati quo autem vitae, ex id laboriosam enim, illo assumenda impedit quibusdam incidunt?
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi similique fuga placeat repellendus dolores molestiae
-                                repudiandae nemo illo magnam quo. Fugit culpa enim aspernatur laboriosam pariatur consequatur, ut blanditiis expedita!
-
-                            </div>
-
-                            <div>
-
-                                Min Age :{scheme.minAge}
-
-                            </div>
-
-
-                            <div>
-
-                                Max Age :{scheme.maxAge}
-
-                            </div>
-
-                            <div>
-
-                                Min Investment :{scheme.minAmount}
-
-                            </div>
-                            <div>
-
-                                Max Investment :{scheme.maxAmount}
-
-                            </div>
-
-
-
-
-
+                    <div className='row mt-5'>
+                        <div className='col-12'>
+                            <Table data={scheme} canUpdate={true} canDelete={true}></Table>
                         </div>
-                        : <div className='text-danger text-center fw-bold'>No Plan Selected </div>
-                }
-            </div>
+                    </div>
 
+                </div>
+            </div> */}
+
+            <div className='container-fluid'>
+                <div className='row'>
+                    <div className='col-lg-2 mt-5 ms-5'>
+                        <button className='btn btn-lg btn-outline-success sidebutton'>
+                            Add A New Scheme
+                        </button>
+                        <button className='btn btn-lg btn-outline-primary sidebutton'>
+                            Update A Scheme
+                        </button>
+                        <button className='btn btn-lg btn-outline-warning sidebutton'>
+                            show All Scheme
+                        </button>
+                        <button className='btn btn-lg btn-outline-danger sidebutton'>
+                            Delete A scheme
+                        </button>
+                        <button className='btn btn-lg btn-outline-info sidebutton'>
+                            Go To Dashboard
+                        </button>
+
+                      
+                    </div>
+                    <div className='col-lg-8 mt-5 offset-1'>
+                        <AddScheme></AddScheme>
+                    </div>
+                </div>
+            </div>
 
 
             <Footer></Footer>

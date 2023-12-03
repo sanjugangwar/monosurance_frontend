@@ -28,7 +28,7 @@ const Navbar = () => {
                                 <div>
                                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 fs-3 ps-5">
                                         <li className="nav-item ps-5">
-                                            <a className="nav-link text-dark" href="/admin">Home</a>
+                                            <a className="nav-link text-dark" href="/">Home</a>
                                         </li>
                                         <li className="nav-item ps-5">
                                             <a className="nav-link text-dark" href="/plans"> Plans</a>

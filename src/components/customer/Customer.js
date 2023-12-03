@@ -7,7 +7,11 @@ import profile from '../../images/profile.png'
 import queries from '../../images/queries.jpg'
 import document from '../../images/documents.webp'
 import payment from '../../images/payment.png'
+import { useNavigate } from 'react-router-dom'
 const Customer = () => {
+
+    const navigate=new useNavigate();
+
     return (
         <div>
             <Navbar></Navbar>
@@ -25,7 +29,14 @@ const Customer = () => {
                                     }} />
                                 <div className='d-block ms-3'>
                                     <div className='text2 fw-bold fs-1'>Profile</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={
+                                        ()=>{
+                                            navigate('/customer/profile')
+                                        }
+                                    }
+                                    >View More</button>
                                 </div>
 
                             </div>

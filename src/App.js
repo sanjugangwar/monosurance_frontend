@@ -12,6 +12,11 @@ import AllEmployee from './components/admin/AllEmployee';
 import AllPlans from './components/admin/AllPlans';
 import AllAgents from './components/agent/AllAgents';
 import Schemes from './components/admin/Schemes';
+import AgentProfile from './components/agent/AgentProfile';
+import AddCustomer from './components/agent/AddCustomer';
+import CustomerProfile from './components/customer/CustomerProfile';
+import EmployeeProfile from './components/employee/EmployeeProfile';
+import Plans from './components/plan/Plans';
 
 function App() {
   return (
@@ -29,6 +34,12 @@ function App() {
         <Route exact path='/contact' element={<Contact></Contact>}></Route>
         <Route exact path='/about' element={<About></About>}></Route>
         <Route exact path='/schemes' element={<Schemes></Schemes>}></Route>
+        <Route exact path='/agentProfile' element={<AgentProfile></AgentProfile>}></Route>
+        <Route exact path='/agent/addCustomer' element={<AddCustomer/>}></Route>
+        <Route exact path='/customer/profile' element={<CustomerProfile/>}></Route>
+        <Route exact path='/employee/profile' element={<EmployeeProfile/>}></Route>
+        <Route exact path='/plans' element={<Plans/>}></Route>
+
       </Routes>
       {/* <Home></Home> */}
     </div>

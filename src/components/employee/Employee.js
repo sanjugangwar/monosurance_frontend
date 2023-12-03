@@ -47,7 +47,15 @@ const Employee = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Profile</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={
+                                        ()=>{
+                                            navigate('/employee/profile')
+                                        }
+                                    }
+
+                                    >View More</button>
                                 </div>
 
                             </div>
