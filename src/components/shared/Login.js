@@ -18,6 +18,7 @@ const Login = () => {
         e.preventDefault();
         try {
             let response = await login(username, password, roleType);
+            
             localStorage.setItem('auth', response.data.accessToken);
             localStorage.setItem('username', response.data.username);
             localStorage.setItem('role', response.data.roleType);

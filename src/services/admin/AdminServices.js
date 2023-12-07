@@ -81,10 +81,10 @@ export const allPlans = (pageNumber, pageSize) => {
                     pageNumber,
                     pageSize
                 }
-                ,
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem('auth')
-                }
+                // ,
+                // headers: {
+                //     Authorization: "Bearer " + localStorage.getItem('auth')
+                // }
             }
 
         )
@@ -174,10 +174,10 @@ export const getSchemeByPlan=(planId)=>{
                 params: {
                     planId
                 }
-                ,
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem('auth')
-                }
+                // ,
+                // headers: {
+                //     Authorization: "Bearer " + localStorage.getItem('auth')
+                // }
             }
 
         )

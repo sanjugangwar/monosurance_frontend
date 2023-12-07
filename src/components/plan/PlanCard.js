@@ -15,7 +15,7 @@ const PlanCard = (data) => {
 
     return (
         <div className='col-3'>
-           <button className='btn btn-outline-primary p-5 fs-1 fw-bold'
+           <button className='btn btn-outline-primary  fs-1  fw-bold'
            onClick={
             ()=>getSchemesData()
            }

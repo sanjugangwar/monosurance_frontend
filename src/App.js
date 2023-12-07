@@ -17,6 +17,9 @@ import AddCustomer from './components/agent/AddCustomer';
 import CustomerProfile from './components/customer/CustomerProfile';
 import EmployeeProfile from './components/employee/EmployeeProfile';
 import Plans from './components/plan/Plans';
+import Query from './components/customer/Query';
+import EmployeeQueries from './components/employee/EmployeeQueries';
+import PolicyView from './components/policy/PolicyView';
 
 function App() {
   return (
@@ -37,7 +40,11 @@ function App() {
         <Route exact path='/agentProfile' element={<AgentProfile></AgentProfile>}></Route>
         <Route exact path='/agent/addCustomer' element={<AddCustomer/>}></Route>
         <Route exact path='/customer/profile' element={<CustomerProfile/>}></Route>
+        <Route exact path='/customer/policy' element={<PolicyView/>}></Route>
+        <Route exact path='/customer/query' element={<Query/>}></Route>
         <Route exact path='/employee/profile' element={<EmployeeProfile/>}></Route>
+        <Route exact path='/employee/queries' element={<EmployeeQueries/>}></Route>
+
         <Route exact path='/plans' element={<Plans/>}></Route>
 
       </Routes>

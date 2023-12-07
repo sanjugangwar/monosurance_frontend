@@ -53,7 +53,13 @@ const Customer = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Policies</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={
+                                        ()=>navigate('/customer/policy')
+                                    }
+                                    
+                                    >View More</button>
                                 </div>
 
                             </div>
@@ -70,7 +76,15 @@ const Customer = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Queries</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={
+                                        ()=>{
+                                            navigate('/customer/query')
+                                        }
+                                    }
+                                    
+                                    >View More</button>
                                 </div>
 
                             </div>

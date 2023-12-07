@@ -4,13 +4,17 @@ import Footer from '../navbar/Footer'
 import { allPlans, getSchemeByPlan } from '../../services/admin/AdminServices'
 import Insurance from '../../images/Insurance.png'
 import Table from '../table/Table'
-import AddScheme from './AddScheme'
+import AddScheme from '../schemes/AddScheme'
+import { useNavigate } from 'react-router-dom'
+import EditScheme from '../schemes/EditScheme'
+import DeleteScheme from '../schemes/DeleteScheme'
 
 const Schemes = () => {
 
     const [plans, setPlans] = useState([])
     const [value, setValue] = useState("plan")
     const [scheme, setScheme] = useState([])
+    const [buttonValue,setbuttonValue]=useState("add");
 
     const getAllPlan = async () => {
         let response = await allPlans(0, 30);
@@ -40,6 +44,11 @@ const Schemes = () => {
         },
         [value]
     )
+
+    const navigate=new useNavigate();
+
+    let normalButtonClass ='btn btn-lg btn-outline-success sidebutton';
+    let activeButtonClass='btn btn-lg btn-outline-success sidebutton active'
 
     return (
         <>
@@ -80,26 +89,80 @@ const Schemes = () => {
             <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-lg-2 mt-5 ms-5'>
-                        <button className='btn btn-lg btn-outline-success sidebutton'>
+                        <button className={buttonValue=="add"?activeButtonClass:normalButtonClass}
+                        
+                        onClick={
+                            ()=>{
+                                setbuttonValue("add")
+                            }
+                        }
+
+                        >
                             Add A New Scheme
                         </button>
-                        <button className='btn btn-lg btn-outline-primary sidebutton'>
+                        <button className={buttonValue=="edit"?activeButtonClass:normalButtonClass}
+                        
+                        onClick={
+                            ()=>{
+                                setbuttonValue("edit")
+                            }
+                        }
+                        >
                             Update A Scheme
                         </button>
-                        <button className='btn btn-lg btn-outline-warning sidebutton'>
+                        {/* <button className={buttonValue=="read"?activeButtonClass:normalButtonClass}
+                        onClick={
+                            ()=>{
+                                setbuttonValue("read")
+                            }
+                        }
+                        >
                             show All Scheme
+                        </button> */}
+                        <button className={buttonValue=="delete"?activeButtonClass:normalButtonClass}
+                        
+                        onClick={
+                            ()=>{
+                                setbuttonValue("delete")
+                            }
+                        }
+
+                        >
+                           Delete Scheme
                         </button>
-                        <button className='btn btn-lg btn-outline-danger sidebutton'>
-                            Delete A scheme
-                        </button>
-                        <button className='btn btn-lg btn-outline-info sidebutton'>
+                        <button className={buttonValue=="go"?activeButtonClass:normalButtonClass}
+                        
+                        onClick={
+                            ()=>{
+                                navigate('/admin')
+                            }
+                        }
+
+                        >
                             Go To Dashboard
                         </button>
 
                       
                     </div>
                     <div className='col-lg-8 mt-5 offset-1'>
-                        <AddScheme></AddScheme>
+                        {
+                            buttonValue=="add"?<AddScheme></AddScheme>:null
+
+                        }
+                         {
+                            buttonValue=="edit"?<EditScheme></EditScheme>:null
+
+                        }
+                         {
+                            buttonValue=="read"?<h1>All Schemes</h1>:null
+
+                        }
+                         {
+                            buttonValue=="delete"? <DeleteScheme></DeleteScheme>:null
+
+                        }
+                         
+                        
                     </div>
                 </div>
             </div>

@@ -72,7 +72,15 @@ const Employee = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Agents</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={
+                                        ()=>{
+                                          navigate('/allAgents')  
+                                        }
+                                    }
+
+                                    >View More</button>
                                 </div>
 
                             </div>
@@ -125,7 +133,13 @@ const Employee = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Customer Queries</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={
+                                        ()=>navigate('/employee/queries')
+                                    }
+
+                                    >View More</button>
                                 </div>
 
                             </div>

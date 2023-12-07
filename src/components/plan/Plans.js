@@ -18,7 +18,7 @@ const Plans = () => {
 
 
         let response = await allPlans(pageNumber, pageSize);
-        // console.log(response);
+        console.log(response);
         setPlans(response.data.content);
 
     }
