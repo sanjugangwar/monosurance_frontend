@@ -10,7 +10,7 @@ const SchemeView = (data) => {
     data = data.data;
     console.log("required scheme data", data);
     console.log(data.requierdDocs);
-    let requierdDocs = data.requierdDocs;
+    let requierdDocs = data.requierdDocs == null ? [] : data.requierdDocs;
     const [value, setValue] = useState(false);
     const [clickCalculate, setClickCalculate] = useState(false);
     const [duration, setDuration] = useState()
@@ -71,6 +71,7 @@ const SchemeView = (data) => {
         let response = await allAgents(0, 30);
         setAgents(response.data.content);
         console.log(response);
+
     }
 
     const buyHandler = () => {
@@ -124,7 +125,7 @@ const SchemeView = (data) => {
         agentId,
         username: localStorage.getItem('username'),
         duration,
-        premiumType:preimumType,
+        premiumType: preimumType,
         investMent,
         nominees: nomineeList,
         docs: policyDocuments
@@ -349,17 +350,19 @@ const SchemeView = (data) => {
                                         <label for="floatingInput">Total Amount</label>
                                     </div>
                                 </div>
+                                {
+                                    localStorage.getItem('role')=="ROLE_CUSTOMER"?
+                                    <button className='btn btn-outline-primary btn-lg fw-bold my-3'
 
-                                <button className='btn btn-outline-primary btn-lg fw-bold my-3'
+                                        onClick={
+                                            () => {
 
-                                    onClick={
-                                        () => {
-
-                                            buyHandler();
+                                                buyHandler();
+                                            }
                                         }
-                                    }
 
-                                >Buy Policy</button>
+                                    >Buy Policy</button>:null
+                                }
 
                             </div>
 

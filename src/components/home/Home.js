@@ -5,8 +5,11 @@ import Insurance from '../../images/Insurance.png'
 import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
 import Faq from '../shared/Faq'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+
+  const navigate = new useNavigate();
   return (
     <>
       <Navbar></Navbar>
@@ -22,7 +25,15 @@ const Home = () => {
               </div>
 
               <div className='mt-3'>
-                <button className='btn btn-outline-primary p-2 fw-bold ms-5'>Buy Your Policy</button>
+                <button className='btn btn-outline-primary p-2 fw-bold ms-5'
+
+                  onClick={
+                    () => {
+                      navigate('/plans')
+                    }
+                  }
+
+                >Buy Your Policy</button>
               </div>
 
             </div>
@@ -84,7 +95,7 @@ const Home = () => {
           <div className='row mt-5'>
             <div className='col-6'>
 
-              <img src={Insurance} alt='insurance' style={{height:"50vh"}} className='img-fluid'></img>
+              <img src={Insurance} alt='insurance' style={{ height: "50vh" }} className='img-fluid'></img>
 
             </div>
             <div className='col-6'>

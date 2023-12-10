@@ -96,8 +96,14 @@ const Employee = () => {
                                         width: "10rem"
                                     }} />
                                 <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Customer Documents</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <div className='text2 fw-bold fs-1'> Approve Documents</div>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={()=>{
+                                        navigate('/employee/approve')
+                                    }}
+
+                                    >View More</button>
                                 </div>
 
                             </div>
@@ -116,7 +122,15 @@ const Employee = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Insurance Accounts</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={
+                                        ()=>{
+                                            navigate('/employee/accounts')
+                                        }
+                                    }
+                                    
+                                    >View More</button>
                                 </div>
 
                             </div>
@@ -145,7 +159,7 @@ const Employee = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='col-4'>
+                    {/* <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
                                 <img src={commission} className='rounded-pill'
@@ -161,7 +175,7 @@ const Employee = () => {
 
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

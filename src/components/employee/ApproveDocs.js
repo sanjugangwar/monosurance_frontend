@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
-import { getPolicy } from '../../services/policy/Policy'
-import { warningAlert } from '../alerts/Alert'
+import { editPolicy, getPendingPolicy, getPolicy } from '../../services/policy/Policy'
+import { successAlet, warningAlert } from '../alerts/Alert'
 import PaginationApp from '../table/PaginationApp'
 
-const PolicyView = () => {
+const ApproveDocs = () => {
 
     const [pageNumber, setPageNumber] = useState(0);
     const [pageSize, setPageSize] = useState(1);
@@ -19,7 +19,7 @@ const PolicyView = () => {
 
     const getPolicyData = async () => {
         try {
-            let response = await getPolicy(pageNumber, username);
+            let response = await getPendingPolicy(pageNumber);
             console.log(response);
             setTotalPages(Math.ceil(parseInt(response.headers['policy-count']) / pageSize));
             setTotalElements(Math.ceil(parseInt(response.headers['policy-count']) / pageSize));
@@ -31,7 +31,29 @@ const PolicyView = () => {
             warningAlert("Some Error Occured")
         }
 
+
+
     }
+
+    const approveHandler = async (document, status) => {
+        console.log(document);
+        let data = {
+            policyId: policy.policyId,
+            documentId: document.documentId,
+            status
+        }
+        let response;
+        try {
+            response = await editPolicy(data);
+            if (response) {
+                successAlet("document updated")
+            }
+        }
+        catch (error) {
+            warningAlert(error.response.data.message)
+        }
+    }
+
 
     useEffect(
         () => {
@@ -253,21 +275,31 @@ const PolicyView = () => {
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <div class="form-floating mb-3 ">
-                                                    <input type="text" class="form-control text-primary fw-bold" id="floatingInput"
+                                                <button className='btn btn-lg btn-success me-5 mb-3'
 
-                                                        value={document.documentStatus}
+                                                    onClick={
+                                                        () => {
+                                                            approveHandler(document, "approve");
+                                                        }
+                                                    }
 
+                                                >Approve</button>
 
-                                                    />
-                                                    <label for="floatingInput">Document Status</label>
-                                                </div>
+                                                <button className='btn btn-lg btn-danger mb-3'
+
+                                                    onClick={
+                                                        () => {
+                                                            approveHandler(document, "reject");
+                                                        }
+                                                    }
+
+                                                >Reject</button>
                                             </div>
                                         </div>
                                     }
                                 )
                             }
-                            <div className='row mt-3 shadow-lg align-items-center'>
+                            {/* <div className='row mt-3 shadow-lg align-items-center'>
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -293,7 +325,7 @@ const PolicyView = () => {
                                         }
                                     </tbody>
                                 </table>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>
@@ -304,4 +336,4 @@ const PolicyView = () => {
     )
 }
 
-export default PolicyView
+export default ApproveDocs

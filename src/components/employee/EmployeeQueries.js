@@ -89,6 +89,14 @@ const EmployeeQueries = () => {
         , [actionData]
     )
 
+    useEffect(
+        () => {
+            if(valid)
+            getQuestionsData();
+        }
+        , []
+    )
+
 
     return (
         <>

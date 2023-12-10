@@ -4,6 +4,7 @@ import Footer from '../navbar/Footer'
 import loginimage from '../../images/login2.webp'
 import { login } from '../../services/common/CommonServices'
 import { useNavigate } from 'react-router-dom'
+import { warningAlert } from '../alerts/Alert'
 
 const Login = () => {
 
@@ -37,7 +38,7 @@ const Login = () => {
         }
         catch (error) {
 
-            alert(error.response.data.message);
+            warningAlert(error.response.data.message);
 
         }
     }

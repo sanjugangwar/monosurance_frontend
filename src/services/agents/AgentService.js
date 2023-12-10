@@ -70,10 +70,10 @@ export const deleteAgent=async(id)=>{
 }
 
 
-export const  getAgentByUsername=()=>{
+export const  getAgentByUsername=async ()=>{
 
     try {
-        let response = axios.get(
+        let response = await axios.get(
             'http://localhost:8081/monosurance/agent',
             {
                 params: {

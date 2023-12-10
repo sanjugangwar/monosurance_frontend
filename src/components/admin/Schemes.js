@@ -128,7 +128,7 @@ const Schemes = () => {
                         }
 
                         >
-                           Delete Scheme
+                           Delete A Scheme
                         </button>
                         <button className={buttonValue=="go"?activeButtonClass:normalButtonClass}
                         

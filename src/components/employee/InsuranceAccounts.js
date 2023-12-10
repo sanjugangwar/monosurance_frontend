@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
-import { getPolicy } from '../../services/policy/Policy'
+import { getAllPolicy, getPolicy } from '../../services/policy/Policy'
 import { warningAlert } from '../alerts/Alert'
 import PaginationApp from '../table/PaginationApp'
 
-const PolicyView = () => {
+const InsuranceAccounts = () => {
 
     const [pageNumber, setPageNumber] = useState(0);
     const [pageSize, setPageSize] = useState(1);
@@ -19,7 +19,7 @@ const PolicyView = () => {
 
     const getPolicyData = async () => {
         try {
-            let response = await getPolicy(pageNumber, username);
+            let response = await getAllPolicy(pageNumber);
             console.log(response);
             setTotalPages(Math.ceil(parseInt(response.headers['policy-count']) / pageSize));
             setTotalElements(Math.ceil(parseInt(response.headers['policy-count']) / pageSize));
@@ -274,7 +274,7 @@ const PolicyView = () => {
                                             <th scope="col">Payment Amount</th>
                                             <th scope="col">payment Date</th>
                                             <th scope="col">Payement Status</th>
-                                            <th scope="col">Payement</th>
+                                            {/* <th scope="col">Payement</th> */}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -285,7 +285,7 @@ const PolicyView = () => {
                                                         <th scope="row">{payment.amount}</th>
                                                         <td>{payment.paymentDate}</td>
                                                         <td>UnPaid</td>
-                                                        <td><button className='btn btn-success btn-lg fw-bold'>Pay</button></td>
+                                                        {/* <td><button className='btn btn-success btn-lg fw-bold'>Pay</button></td> */}
                                                     </tr>
 
                                                 }
@@ -304,4 +304,4 @@ const PolicyView = () => {
     )
 }
 
-export default PolicyView
+export default InsuranceAccounts

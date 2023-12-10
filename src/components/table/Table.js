@@ -81,7 +81,7 @@ const Table = (data) => {
                             {
                                 canViewMore ? <button className='btn btn-outline-danger'
                                     onClick={() => handleDelete(d)}
-                                ><i class="bi bi-trash3-fill me-1"></i> View More </button> : null
+                                > View More </button> : null
                             }
                         </td>
                         : null}

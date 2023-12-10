@@ -6,6 +6,7 @@ import Table from '../table/Table';
 import PaginationApp from '../table/PaginationApp';
 import PageSelect from '../table/PageSelect';
 import AddAgent from './AddAgent';
+import { successAlet, warningAlert } from '../alerts/Alert';
 
 const AllAgents = () => {
 
@@ -57,14 +58,26 @@ const AllAgents = () => {
     }
 
     const addAgentHandler=async()=>{
+        try{
         let response=await addAgent(agentPostData);
         setActionData(response)
+        successAlet("agent added")
+        }
+        catch(error){
+            warningAlert(error.response.data.message);
+        }
     }
 
     const handleDelete=async(agent)=>{
+        try{
         let response = await deleteAgent(agent.id);
         setActionData(response);
         console.log(agent);
+        successAlet("agent deleted ")
+        }
+        catch(error){
+            warningAlert(error.response.data.message)
+        }
     }
 
     const addAgentData={

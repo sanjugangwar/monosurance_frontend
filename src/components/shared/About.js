@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Footer from '../navbar/Footer'
 import Navbar from '../navbar/Navbar'
-import contact from '../../images/6fc1d7f2-d9cb-45ea-9c61-6402cb0a3f72.jpg'
+import contact from '../../images/login.jpg'
 import axios from 'axios'
 
 const About = () => {
