@@ -50,13 +50,17 @@ const Navbar = () => {
                         
                         <div className='d-flex '>
                             {
-                                localStorage.getItem('auth') == null ? <a className='btn btn-outline-primary px-3 fw-bold' href='/login'>Login</a> :
+                                localStorage.getItem('auth') == null ? <a className='btn btn-outline-primary px-3 fw-bold' href='/login'>Login
+                                
+                                {/* <span><i class="bi bi-person-fill"></i>{localStorage.getItem('username')}</span> */}
+                                
+                                </a> :
                                     <a className='btn btn-outline-primary px-3 fw-bold'  onClick={
                                         (e) => {
                                             localStorage.clear();
                                             navigate('/login')
                                         }
-                                    }>Logout</a>
+                                    }>Logout <span><i class="bi bi-person-fill"></i>{localStorage.getItem('username')}</span> </a>
                             }
                         </div>
 

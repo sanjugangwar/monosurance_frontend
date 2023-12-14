@@ -116,3 +116,43 @@ export const getAllPolicy=async(pageNumber)=>{
         throw error;
     }
 }
+
+export const policyPayment=async (data)=>{
+    try {
+
+        let response = await axios.post(
+            'http://localhost:8081/monosurance/payment', data, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('auth')
+            }
+        }
+
+        )
+
+        return response;
+    } catch (error) {
+
+        throw error;
+
+    }
+}
+
+export const policyClaimfun=async (data)=>{
+    try {
+
+        let response = await axios.post(
+            'http://localhost:8081/monosurance/claimPolicy', data, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('auth')
+            }
+        }
+
+        )
+
+        return response;
+    } catch (error) {
+
+        throw error;
+
+    }
+}

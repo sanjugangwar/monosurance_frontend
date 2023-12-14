@@ -22,6 +22,8 @@ import EmployeeQueries from './components/employee/EmployeeQueries';
 import PolicyView from './components/policy/PolicyView';
 import ApproveDocs from './components/employee/ApproveDocs';
 import InsuranceAccounts from './components/employee/InsuranceAccounts';
+import AgentCommission from './components/agent/AgentCommission';
+import ApproveClams from './components/admin/ApproveClams';
 
 function App() {
   return (
@@ -48,6 +50,8 @@ function App() {
         <Route exact path='/employee/profile' element={<EmployeeProfile/>}></Route>
         <Route exact path='/employee/queries' element={<EmployeeQueries/>}></Route>
         <Route exact path='/employee/accounts' element={<InsuranceAccounts/>}></Route>
+        <Route exact path='/agent/commission' element={<AgentCommission/>}></Route>
+        <Route exact path='/admin/claims' element={<ApproveClams/>}></Route>
         <Route exact path='/plans' element={<Plans/>}></Route>
 
       </Routes>

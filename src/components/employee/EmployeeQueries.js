@@ -35,6 +35,7 @@ const EmployeeQueries = () => {
 
     const getQuestionsData = async () => {
         try {
+            console.log("all questions");
             let response = await allQuestions(pageNumber, pageSize);
             console.log(response.data.content);
             setQuestions(response.data.content);
@@ -91,7 +92,7 @@ const EmployeeQueries = () => {
 
     useEffect(
         () => {
-            if(valid)
+            // if(valid)
             getQuestionsData();
         }
         , []

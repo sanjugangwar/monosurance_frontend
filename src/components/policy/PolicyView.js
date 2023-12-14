@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
-import { getPolicy } from '../../services/policy/Policy'
-import { warningAlert } from '../alerts/Alert'
+import { getPolicy, policyClaim, policyClaimfun, policyPayment } from '../../services/policy/Policy'
+import { successAlet, warningAlert } from '../alerts/Alert'
 import PaginationApp from '../table/PaginationApp'
+import Payment from './Payment'
+import PolicyClaim from './PolicyClaim'
 
 const PolicyView = () => {
 
@@ -16,6 +18,18 @@ const PolicyView = () => {
     const [policy, setPolicy] = useState([]);
     const [documents, setDocuments] = useState([]);
     const [payments, setpayments] = useState([])
+    const [policyId, setPolicyId] = useState();
+    const [paymentId, setPaymentId] = useState();
+    const [responseData, setReponseData] = useState();
+
+    const [claimAmount, setClaimAmount] = useState();
+    const [bankName, setBankName] = useState();
+    const [branchName, setBranchName] = useState();
+    const [ifscCode, setIfscCode] = useState();
+    const [accountNumber, setAccountNumber] = useState();
+    const [claimShow, setClaimShow] = useState(false);
+
+
 
     const getPolicyData = async () => {
         try {
@@ -24,8 +38,31 @@ const PolicyView = () => {
             setTotalPages(Math.ceil(parseInt(response.headers['policy-count']) / pageSize));
             setTotalElements(Math.ceil(parseInt(response.headers['policy-count']) / pageSize));
             setPolicy(response.data);
+            setPolicyId(response.data.policyId);
             setDocuments(response.data.documents)
             setpayments(response.data.payments);
+
+            let x = 0;
+
+            let flag = false;
+
+
+            for (let payment of response.data.payments) {
+                if (payment.paymentStatus == "PAID") {
+                    x += payment.amount;
+                }
+                else {
+                    flag = true
+                }
+            }
+
+            if (flag) {
+                setClaimAmount(x);
+            }
+            else {
+                setClaimAmount(response.data.sumAssured)
+            }
+
         }
         catch (error) {
             warningAlert("Some Error Occured")
@@ -33,17 +70,104 @@ const PolicyView = () => {
 
     }
 
+    const [paymentType, setPaymentType] = useState();
+    const [amount, setAmount] = useState();
+    const [cardNumber, setCardNumber] = useState();
+    const [cvv, setCvv] = useState();
+    const [expiry, setExpiry] = useState();
+    const [show, setShow] = useState(false);
+
+
+    const handlePay = async () => {
+
+        let data = {
+            policyId,
+            username: localStorage.getItem('username'),
+            paymentId: paymentId,
+            paymentType,
+            amount, cardNumber, cvv, expiry
+        }
+        try {
+            let response = await policyPayment(data);
+            if (response) {
+                successAlet("payment success")
+                setReponseData(response);
+            }
+        }
+        catch (error) {
+
+            warningAlert("payment failed")
+
+        }
+
+
+    }
+
+    let data = {
+
+        amount,
+        cardNumber, setCardNumber,
+        paymentType, setPaymentType,
+        cvv, setCvv,
+        expiry, setExpiry,
+        show, setShow,
+        handlePay
+
+    }
+
+    const claimHandler = async () => {
+
+        let data = {
+            policyId,
+            claimAmount,
+            bankName,
+            branchName,
+            ifscCode,
+            accountNumber
+        }
+
+        try {
+
+
+            let response = await policyClaimfun(data);
+            if (response) {
+                successAlet("claim submitted")
+                setReponseData(response);
+            }
+
+        }
+        catch (error) {
+
+            warningAlert("claim failed")
+
+        }
+
+
+    }
+
+    let data1 = {
+        claimAmount,
+        bankName, setBankName,
+        branchName, setBranchName,
+        ifscCode, setIfscCode,
+        accountNumber, setAccountNumber,
+        show: claimShow, setShow: setClaimShow,
+        claimHandler
+    }
+
     useEffect(
         () => {
             getPolicyData();
         }
-        , [pageNumber]
+        , [pageNumber, responseData]
     )
 
     return (
         // <></>
         <>
             <Navbar></Navbar>
+            <Payment data={data}></Payment>
+            <PolicyClaim data={data1} ></PolicyClaim>
             {
                 policy != [] ?
 
@@ -283,9 +407,32 @@ const PolicyView = () => {
                                                 (payment) => {
                                                     return <tr>
                                                         <th scope="row">{payment.amount}</th>
-                                                        <td>{payment.paymentDate}</td>
-                                                        <td>UnPaid</td>
-                                                        <td><button className='btn btn-success btn-lg fw-bold'>Pay</button></td>
+                                                        <td>{payment.paymentDate.substring(0, 10)}</td>
+                                                        <td>{payment.paymentStatus == null ? "UNPAID" : "PAID"}</td>
+                                                        <td><button className='btn btn-success btn-lg fw-bold'
+
+                                                            onClick={
+                                                                () => {
+
+                                                                    setPaymentId(payment.paymentId);
+                                                                    setAmount(payment.amount);
+                                                                    
+                                                                    if(policy.policyStatus=="PENDING"){
+                                                                        warningAlert("policy is pending");
+                                                                    }
+                                                                    else if (payment.paymentStatus == "PAID") {
+                                                                        warningAlert("already paid")
+                                                                    }
+                                                                    else if(policy.policyStatus=="DROP" || policy.policyStatus=="COMPLETE"){
+                                                                        warningAlert("already claimed")
+                                                                    }
+                                                                    else {
+                                                                        setShow(true);
+                                                                    }
+                                                                }
+                                                            }
+
+                                                        >{payment.paymentStatus == null ? "PAY" : "PAID"}</button></td>
                                                     </tr>
 
                                                 }
@@ -293,7 +440,27 @@ const PolicyView = () => {
                                         }
                                     </tbody>
                                 </table>
+                                <div>
+                                    <button className='btn btn-lg btn-success mb-3'
+
+                                        onClick={
+                                            () => {
+                                                if(policy.policyStatus=="PENDING"){
+                                                    warningAlert("policy is pending");
+                                                }
+                                                else if(policy.policyStatus=="DROP" || policy.policyStatus=="COMPLETE"){
+                                                    warningAlert("already claimed")
+                                                }
+                                                else{
+                                                setClaimShow(true)
+                                                }
+                                            }
+                                        }
+
+                                    >Claim</button>
+                                </div>
                             </div>
+
 
                         </div>
                     </div>

@@ -118,4 +118,51 @@ export const editAgentPorfile=async (data)=>{
     }
 
 
+
+}
+
+export const getAgentDetail=async()=>{
+    try {
+        let response = await axios.get(
+            'http://localhost:8081/monosurance/agentDetail',
+            {
+                params: {
+                   username:localStorage.getItem('username')
+                }
+                ,
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('auth')
+                }
+            }
+
+        )
+
+        return response;
+
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+
+
+export const agentClaim=async (data)=>{
+    try {
+
+        let response = await axios.post(
+            'http://localhost:8081/monosurance/claim', data, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('auth')
+            }
+        }
+
+        )
+
+        return response;
+    } catch (error) {
+
+        throw error;
+
+    }
 }

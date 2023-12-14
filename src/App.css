@@ -32,52 +32,118 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.border1{
+.border1 {
   border: 2px solid red;
 }
 
-.text1{
+.text1 {
   color: #ff6861;
 }
-.background1{
-  background-color:whitesmoke;
+
+.background1 {
+  background-color: whitesmoke;
 }
 
-.text2{
-  color:#7799fa;
+.text2 {
+  color: #7799fa;
 }
 
-.text3{
-  color:#638ceb;
+.text3 {
+  color: #638ceb;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: #7799fa !important;
 }
 
-.background1{
+.background1 {
   background-color: #ff6861;
 }
 
-.background2{
-  background-color:#7799fa;
+.background2 {
+  background-color: #7799fa;
 }
-.background3{
+
+.background3 {
   background-color: azure;
 }
 
-.sidebutton{
-  padding:1rem ;
-  font-size:2rem;
+.background4 {
+  background: linear-gradient(45deg, rgba(#6D80FE, 1) 0%, rgba(#23D2FD, 1) 100%) !important;
+}
+
+
+
+.sidebutton {
+  padding: 1rem;
+  font-size: 2rem;
   font-weight: bold;
   margin-top: 1rem;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: #ff6861 !important;
+}
+
+.card-purple-blue {
+  background-color: linear-gradient(45deg, rgba(#6D80FE, 1) 0%, rgba(#23D2FD, 1) 100%) !important;
+  box-shadow: 0 5px 20px rgba(#23D2FD, .3) !important
+}
+
+.card-salmon-pink {
+  background: linear-gradient(45deg, rgba(#FF998B, 1) 0%, rgba(#FF6D88, 1) 100%);
+  box-shadow: 0 5px 20px rgba(#FF998B, .3)
+}
+
+.card-blue-green {
+  background: linear-gradient(45deg, rgba(#09AFE8, 1) 0%, rgba(#29F499, 1) 100%);
+  box-shadow: 0 5px 20px rgba(#29F499, .3)
+}
+
+.card-purple-pink {
+  background: linear-gradient(45deg, rgba(#707CFF, 1) 0%, rgba(#FA81E8, 1) 100%);
+  box-shadow: 0 5px 20px rgba(#FA81E8, .3)
+}
+
+/* .cardCustom{
+  height: 10rem;
+  width: 15rem;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 3rem;
+  color:rgb(0, 68, 255);
+  word-spacing: 10px;
+  padding-top: 1rem;
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,31,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.cardCustom:hover{
+  height: 12rem;
+  color:white;
+  
+} */
+
+
+.card1{
+  background-color: #ff6861;
+ 
+  color: white;
+}
+
+
+.card1:hover{
+  background-color: #7799fa;
+  color:black;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }

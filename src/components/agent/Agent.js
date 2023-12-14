@@ -99,7 +99,15 @@ const Agent = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Commission</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+                                    onClick={
+                                        ()=>{
+                                            navigate('/agent/commission')
+                                        }
+                                    }
+                                    
+                                    >View More</button>
                                 </div>
 
                             </div>

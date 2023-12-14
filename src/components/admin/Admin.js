@@ -139,7 +139,14 @@ const Admin = () => {
                                     }} />
                                 <div className='d-block '>
                                     <div className='text2 fw-bold fs-1'>Claims</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                                    <button className='btn btn-lg btn-outline-success'
+                                    
+
+                                    onClick={
+                                        ()=>navigate('/admin/claims')
+                                    }
+                                    
+                                    >View More</button>
                                 </div>
 
                             </div>

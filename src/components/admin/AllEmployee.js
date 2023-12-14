@@ -15,35 +15,35 @@ const AllEmployee = () => {
     const [totalElements, setTotalElements] = useState();
 
     const [employeeData, setEmployeeData] = useState([])
-    
-    const [employeeId,setEmployeeId]=useState()
-    const [firstName,setFirstName]=useState("");
-    const [lastName,setLastName]=useState("");
-    const [mobileNumber,setMobileNumber]=useState("")
-    const [salary,setSalary]=useState("");
-    const [username,setUsername]=useState("");
-    const [password,setPassword]=useState("");
-    const [email,setEmail]=useState("");
-    const [dateOfBirth,setDateOfBirth]=useState("");
-    const [houseNo,setHouseNo]=useState("");
-    const [apartment,setApartment]=useState("");
-    const [city,setCity]=useState("");
-    const [state,setState]=useState("");
-    const [pincode,setPincode]=useState("");
-    const [show ,setShow]=useState(false);
-    const [actionData,setActionData]=useState("");
 
-    let data={}
+    const [employeeId, setEmployeeId] = useState()
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [mobileNumber, setMobileNumber] = useState("")
+    const [salary, setSalary] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [houseNo, setHouseNo] = useState("");
+    const [apartment, setApartment] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [pincode, setPincode] = useState("");
+    const [show, setShow] = useState(false);
+    const [actionData, setActionData] = useState("");
 
-    const addEmployeeHandler=async()=>{
+    let data = {}
 
-        let response=await saveEmployee(data);
+    const addEmployeeHandler = async () => {
+
+        let response = await saveEmployee(data);
         console.log(response);
 
     }
 
 
-    const addEmployeeData={
+    const addEmployeeData = {
         firstName,
         setFirstName,
         lastName,
@@ -60,33 +60,33 @@ const AllEmployee = () => {
         setEmail,
         dateOfBirth,
         setDateOfBirth,
-        houseNo,setHouseNo,
+        houseNo, setHouseNo,
         apartment,
         setApartment,
         city,
         setCity,
         state,
         setState,
-        pincode,setPincode,
-        show,setShow,
+        pincode, setPincode,
+        show, setShow,
         addEmployeeHandler
     }
 
-     data={
+    data = {
         firstName,
         lastName,
         mobileNumber,
         salary,
         username,
         password,
-        email,dateOfBirth,
+        email, dateOfBirth,
         houseNo,
         apartment,
         city,
-        state,pincode
+        state, pincode
     }
 
-    
+
     const getEmployeesData = async () => {
 
         let response = await getAllEmployees(pageNumber, pageSize)
@@ -99,13 +99,13 @@ const AllEmployee = () => {
 
     }
 
-    const handleDelete=async(employee)=>{
+    const handleDelete = async (employee) => {
 
-       let response= await deleteEmployee(employee.employeeId)
+        let response = await deleteEmployee(employee.employeeId)
 
-       setActionData(response);
+        setActionData(response);
 
-       
+
 
     }
 
@@ -113,70 +113,114 @@ const AllEmployee = () => {
         () => {
             getEmployeesData();
         }
-        , [pageNumber, pageSize, totalPages, totalElements,actionData])
+        , [pageNumber, pageSize, totalPages, totalElements, actionData])
 
     return (
         <>
             <Navbar></Navbar>
             <AddEmployee data={addEmployeeData}></AddEmployee>
-            <div className='background2 text-center display-3 py-3 text-white fw-bold'>All Employees</div>
-            <div>
-                <div className='container'>
-                    <div className='row my-5'>
-                        <div className='col-4'>
-                            <PaginationApp
-                                totalPages={totalPages}
-                                pageSize={pageSize}
-                                setPageNumber={setPageNumber}
-                                pageNumber={pageNumber}
+            <div className='container'>
+                <div className='row'>
+                    {/* <div className='col-2 mt-5'>
+                        <button className='border-0'>
+                            <div className='card card1 mt-3'>
+                                <div className='card-body fs-1 fw-bold  text-center'>
+                                    Add A New Employee
+                                </div>
 
-                            ></PaginationApp>
-                        </div>
-                        <div className='col-4'>
+                            </div>
+                        </button>
+                        <button className='border-0'>
+                            <div className='card card1 mt-3'>
+                                <div className='card-body fs-1 fw-bold  text-center'>
+                                    Delete An Employee
+                                </div>
 
-                            <input className='rounded-pill px-3 text-primary fw-bold'
-                                placeholder='search here'
-                            ></input>
+                            </div>
+                        </button>
+                        <button className='border-0'>
+                            <div className='card card1 mt-3'>
+                                <div className='card-body fs-1 fw-bold  text-center'>
+                                    Show All Employee
+                                </div>
+                            </div>
+                        </button>
 
-                        </div>
-                        <div className='col-2 offset-2'>
-                            <PageSelect
+                        <button className='border-0'>
+                            <div className='card  card1 mt-3'>
+                                <div className='card-body fs-1 fw-bold  text-center'>
+                                    Go to Dashboard
+                                </div>
+                            </div>
+                        </button>
 
-                                totalElements={totalElements}
-                                setPageSize={setPageSize}
-                                setPageNumber={setPageNumber}
-                                setTotalPages={setTotalPages}
-                                pageSize={pageSize}
+                    </div> */}
 
-                            ></PageSelect>
-                        </div>
-                    </div>
-                    <div className='row'>
+                    <div className='col-12'>
 
-                        <div className='col-12'>
 
-                            <button className='btn btn-lg btn-outline-primary fw-bold'
-                            onClick={()=>setShow(true)}
-                            >
-                                Add A New Employee
-                            </button>
+                        <div className='tec text-center display-3 py-3 text1 fw-bold'>All Employees</div>
+                        <div>
+                            <div className='container'>
+                                <div className='row my-5'>
+                                    <div className='col-4'>
+                                        <PaginationApp
+                                            totalPages={totalPages}
+                                            pageSize={pageSize}
+                                            setPageNumber={setPageNumber}
+                                            pageNumber={pageNumber}
 
-                        </div>
+                                        ></PaginationApp>
+                                    </div>
+                                    <div className='col-4'>
 
-                        <div className='col-12'>
+                                        <input className='rounded-pill px-3 text-primary fw-bold'
+                                            placeholder='search here'
+                                        ></input>
 
-                            <Table 
-                            data={employeeData} 
-                            // canUpdate={true} 
-                            canDelete={true}
-                            // handleUpdate={handleUpdate}
-                            handleDelete={handleDelete}
-                            
-                            ></Table>
-                        </div>
+                                    </div>
+                                    <div className='col-2 offset-2'>
+                                        <PageSelect
+
+                                            totalElements={totalElements}
+                                            setPageSize={setPageSize}
+                                            setPageNumber={setPageNumber}
+                                            setTotalPages={setTotalPages}
+                                            pageSize={pageSize}
+
+                                        ></PageSelect>
+                                    </div>
+                                </div>
+                                <div className='row'>
+
+                                    <div className='col-12'>
+
+                                        <button className='btn btn-lg btn-outline-primary fw-bold'
+                                            onClick={() => setShow(true)}
+                                        >
+                                            Add A New Employee
+                                        </button>
+
+                                    </div>
+
+                                    <div className='col-12'>
+
+                                        <Table
+                                            data={employeeData}
+                                            // canUpdate={true} 
+                                            canDelete={true}
+                                            // handleUpdate={handleUpdate}
+                                            handleDelete={handleDelete}
+
+                                        ></Table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div >
                     </div>
                 </div>
-            </div >
+
+            </div>
             <Footer></Footer>
         </>
     )

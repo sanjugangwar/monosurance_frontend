@@ -189,3 +189,91 @@ export const getSchemeByPlan=(planId)=>{
         throw error;
     }
 }
+
+export const agentClaims=()=>{
+    try {
+        let response = axios.get(
+            'http://localhost:8081/monosurance/agentClaims',
+            {
+                
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('auth')
+                }
+            }
+
+        )
+
+        return response;
+
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+export const policyClaims=()=>{
+    try {
+        let response = axios.get(
+            'http://localhost:8081/monosurance/policyClaims',
+            {
+                
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('auth')
+                }
+            }
+
+        )
+
+        return response;
+
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+export const agentClaimApprove = async (data) => {
+
+    try {
+
+        let response = await axios.post(
+            'http://localhost:8081/monosurance/agentClaimApprove', data, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem('auth')
+            }
+        }
+
+        )
+
+        return response;
+    } catch (error) {
+
+        throw error;
+
+    }
+
+}
+
+export const policyClaimed=(policyId)=>{
+    try {
+        let response = axios.get(
+            'http://localhost:8081/monosurance/policyClaimApprove',
+            {
+                params: {
+                    policyId
+                }
+                ,
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('auth')
+                }
+            }
+
+        )
+
+        return response;
+
+    }
+    catch (error) {
+        throw error;
+    }
+}
