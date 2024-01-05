@@ -7,6 +7,8 @@ import PaginationApp from '../table/PaginationApp';
 import PageSelect from '../table/PageSelect';
 import AddPlan from '../admin/AddPlan'
 import EditPlan from './EditPlan';
+import { useNavigate } from 'react-router-dom';
+import { warningAlert } from '../alerts/Alert';
 
 const AllPlans = () => {
 
@@ -37,10 +39,12 @@ const AllPlans = () => {
         }
         catch (error) {
 
-            alert(error.response.data.message);
+            warningAlert(error.response.data.message);
 
         }
     }
+
+    const navigate = new useNavigate();
 
 
 
@@ -122,46 +126,89 @@ const AllPlans = () => {
             <AddPlan data={data}></AddPlan>
             <EditPlan data={editData}></EditPlan>
 
-            <div className='container'>
-                <div className='row my-5'>
-                    <div className='col-4'>
-                        <PaginationApp
-                            totalPages={totalPages}
-                            pageSize={pageSize}
-                            setPageNumber={setPageNumber}
-                            pageNumber={pageNumber}
+            <div className='container-fluid'>
+            <div className='background2 text-center display-3 text-white fw-bold py-3'>All Plans</div>
+                {/* <div className='row my-5'>
+
+                
+
+                </div> */}
+                <div className='row'>
+                    <div className='col-2 mt-2'>
+
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold'
+
+                            onClick={
+                                () => {
+                                    setShow(true)
+                                }
+                            }
+
                         >
-                        </PaginationApp>
+                            Add A New New Plan
+                        </button>
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold mt-3'
+
+                            onClick={
+                                () => {
+                                    navigate('/admin')
+                                }
+                            }
+                        >
+                            Go To Dashboard
+                        </button>
+
                     </div>
+                    <div className='col-8 offset-1 mt-3'>
 
-                    <div className='col-4'>
+                        <div className='container'>
 
-                        <input className='rounded-pill px-3 text-primary fw-bold'
-                            placeholder='search here'
-                        ></input>
+                            <div className='row'>
 
-                    </div>
-                    <div className='col-2 offset-2'>
-                        <PageSelect
+                                <div className='col-4'>
 
-                            totalElements={totalElements}
-                            setPageSize={setPageSize}
-                            setPageNumber={setPageNumber}
-                            setTotalPages={setTotalPages}
-                            pageSize={pageSize}
 
-                        ></PageSelect>
-                    </div>
-                </div>
-                <div className='row my-5'>
-                    <div className='col-10'>
-                        <button className='btn btn-outline-primary fw-bold'
+                                    <PaginationApp
+                                        totalPages={totalPages}
+                                        pageSize={pageSize}
+                                        setPageNumber={setPageNumber}
+                                        pageNumber={pageNumber}
+                                    >
+                                    </PaginationApp>
+
+                                </div>
+
+                                <div className='col-4'>
+
+                                    <input className='rounded-pill px-3 text-primary fw-bold'
+                                        placeholder='search here'
+                                    ></input>
+
+                                </div>
+                                <div className='col-2 offset-2'>
+                                    <PageSelect
+
+                                        totalElements={totalElements}
+                                        setPageSize={setPageSize}
+                                        setPageNumber={setPageNumber}
+                                        setTotalPages={setTotalPages}
+                                        pageSize={pageSize}
+
+                                    ></PageSelect>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        {/* <button className='btn btn-outline-primary fw-bold'
 
                             onClick={() => {
                                 setShow(true);
                             }}
 
-                        >Add A New Plan</button>
+                        >Add A New Plan</button> */}
                         <Table data={plansData}
                             canUpdate={true}
                             canDelete={true}

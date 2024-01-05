@@ -33,6 +33,46 @@ const Navbar = () => {
                                         <li className="nav-item ps-5">
                                             <a className="nav-link text-dark" href="/plans"> Plans</a>
                                         </li>
+                                       
+                                            {
+                                            localStorage.getItem('role')=="ROLE_ADMIN"?
+                                                <>
+                                                <li className="nav-item ps-5">
+                                                <a className="nav-link text-dark" href="/admin">Dashboard</a>
+                                                </li>
+                                                </>
+                                                :null
+                                            }
+                                            {
+                                            localStorage.getItem('role')=="ROLE_CUSTOMER"?
+                                                <>
+                                                <li className="nav-item ps-5">
+                                                <a className="nav-link text-dark" href="/customer">Dashboard</a>
+                                                </li>
+                                                </>
+                                                :null
+                                            }
+                                            {
+                                            localStorage.getItem('role')=="ROLE_AGENT"?
+                                                <>
+                                                <li className="nav-item ps-5">
+                                                <a className="nav-link text-dark" href="/agent">Dashboard</a>
+                                                </li>
+                                                </>
+                                                :null
+                                            }
+                                            {
+                                            localStorage.getItem('role')=="ROLE_EMPLOYEE"?
+                                                <>
+                                                <li className="nav-item ps-5">
+                                                <a className="nav-link text-dark" href="/employee">Dashboard</a>
+                                                </li>
+                                                </>
+                                                :null
+                                            }
+                                           
+                                           
+                                       
 
                                         <li className="nav-item ps-5">
                                             <a className="nav-link text-dark" href="/about">About Us</a>

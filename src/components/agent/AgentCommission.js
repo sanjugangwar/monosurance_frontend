@@ -4,6 +4,7 @@ import Footer from '../navbar/Footer'
 import { agentClaim, getAgentDetail } from '../../services/agents/AgentService'
 import { successAlet, warningAlert } from '../alerts/Alert'
 import AgentClaim from './AgentClaim'
+import { useNavigate } from 'react-router-dom'
 
 const AgentCommission = () => {
 
@@ -20,6 +21,8 @@ const AgentCommission = () => {
     const [accountNumber, setAccountNumber] = useState();
     const [show, setShow] = useState(false);
     const [responseData, setReponseData] = useState();
+
+    const navigate = new useNavigate();
 
 
 
@@ -106,105 +109,123 @@ const AgentCommission = () => {
             <AgentClaim data={data}></AgentClaim>
             <div className='background2 text-center display-3 py-3 text-white fw-bold'>Agent Commission</div>
 
-            <div className='container'>
-
+            <div className='container-fluid'>
                 <div className='row'>
-                    <div className='col-10 offset-1'>
-                        <div className='text-danger fw-bold fs-1'>
-                            Earning:
-                            <span className='text-primary'>
-                                {earning}
-                            </span>
-                        </div>
 
-                        <div className='text-danger fw-bold fs-1'>
-                            Claimed :
-                            <span className='text-primary'>
-                                {claim}
-                            </span>
-                        </div>
 
-                        <div className='text-center fw-bold fs-3 text2'>
-                            Commission History
-                        </div>
-
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Commission Id</th>
-                                    <th scope="col">Commission Type</th>
-                                    <th scope="col">Issue date</th>
-                                    <th scope="col">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    commissions.map(
-                                        (commission) => {
-                                            return <tr>
-                                                <th scope="row">{commission.commisionId}</th>
-                                                <td>{commission.commisionType}</td>
-                                                <td>{commission.issueDate.substring(0, 10)}</td>
-                                                <td>{commission.amount}</td>
-                                            </tr>
-
-                                        }
-                                    )
-                                }
-                                <tr>
-                                    <td className='fw-bold'>Total</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td className='fw-bold'>{earning}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div><button className='fw-bold px-3 btn btn-lg btn-success'
+                    <div className='col-2'>
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold mt-3'
 
                             onClick={
                                 () => {
-                                    setShow(true)
+                                    navigate('/agent')
                                 }
                             }
+                        >
+                            Go To Dashboard
+                        </button>
+                    </div>
+                    <div className='col-10'>
 
-                        >Claim</button></div>
-
-
-                        {
-                            claims.length != 0 ? <>
-                                <div className='text-center fw-bold fs-3 text2'>
-                                    Claim History
+                        <div className='row'>
+                            <div className='col-10 offset-1'>
+                                <div className='text-danger fw-bold fs-1'>
+                                    Balance:
+                                    <span className='text-primary'>
+                                        {earning}
+                                    </span>
                                 </div>
+
+                                <div className='text-danger fw-bold fs-1'>
+                                    Claimed :
+                                    <span className='text-primary'>
+                                        {claim}
+                                    </span>
+                                </div>
+
+                                <div className='text-center fw-bold fs-3 text2'>
+                                    Commission History
+                                </div>
+
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Claim Id</th>
-                                            <th scope="col">Claim Status</th>
+                                            <th scope="col">Commission Id</th>
+                                            <th scope="col">Commission Type</th>
                                             <th scope="col">Issue date</th>
                                             <th scope="col">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {
-                                            claims.map(
-                                                (claim) => {
+                                            commissions.map(
+                                                (commission) => {
                                                     return <tr>
-                                                        <th scope="row">{claim.claimId}</th>
-                                                        <td>{claim.claimStatus}</td>
-                                                        <td>{claim.date.substring(0, 10)}</td>
-                                                        <td>{claim.claimAmount}</td>
+                                                        <th scope="row">{commission.commisionId}</th>
+                                                        <td>{commission.commisionType}</td>
+                                                        <td>{commission.issueDate.substring(0, 10)}</td>
+                                                        <td>{commission.amount}</td>
                                                     </tr>
 
                                                 }
                                             )
                                         }
-
+                                        <tr>
+                                            <td className='fw-bold'>Total</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td className='fw-bold'>{earning}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
-                            </> : null
-                        }
 
+                                <div><button className='fw-bold px-3 btn btn-lg btn-success'
+
+                                    onClick={
+                                        () => {
+                                            setShow(true)
+                                        }
+                                    }
+
+                                >Claim</button></div>
+
+
+                                {
+                                    claims.length != 0 ? <>
+                                        <div className='text-center fw-bold fs-3 text2'>
+                                            Claim History
+                                        </div>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Claim Id</th>
+                                                    <th scope="col">Claim Status</th>
+                                                    <th scope="col">Issue date</th>
+                                                    <th scope="col">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    claims.map(
+                                                        (claim) => {
+                                                            return <tr>
+                                                                <th scope="row">{claim.claimId}</th>
+                                                                <td>{claim.claimStatus}</td>
+                                                                <td>{claim.date.substring(0, 10)}</td>
+                                                                <td>{claim.claimAmount}</td>
+                                                            </tr>
+
+                                                        }
+                                                    )
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </> : null
+                                }
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 

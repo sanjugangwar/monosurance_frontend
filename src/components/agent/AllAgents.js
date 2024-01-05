@@ -7,6 +7,7 @@ import PaginationApp from '../table/PaginationApp';
 import PageSelect from '../table/PageSelect';
 import AddAgent from './AddAgent';
 import { successAlet, warningAlert } from '../alerts/Alert';
+import { useNavigate } from 'react-router-dom';
 
 const AllAgents = () => {
 
@@ -15,34 +16,44 @@ const AllAgents = () => {
     const [totalPages, setTotalPages] = useState();
     const [totalElements, setTotalElements] = useState();
 
-    const [firstName,setFirstName]=useState("");
-    const [lastName,setLastName]=useState("");
-    const [mobileNumber,setMobileNumber]=useState("")
-    const [username,setUsername]=useState("");
-    const [password,setPassword]=useState("");
-    const [email,setEmail]=useState("");
-    const [dateOfBirth,setDateOfBirth]=useState("");
-    const [houseNo,setHouseNo]=useState("");
-    const [apartment,setApartment]=useState("");
-    const [city,setCity]=useState("");
-    const [state,setState]=useState("");
-    const [pincode,setPincode]=useState("");
-    const [actionData,setActionData]=useState("");
-    const [show , setShow] =useState(false);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [mobileNumber, setMobileNumber] = useState("")
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [houseNo, setHouseNo] = useState("");
+    const [apartment, setApartment] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [pincode, setPincode] = useState("");
+    const [actionData, setActionData] = useState("");
+    const [show, setShow] = useState(false);
 
-    const [agentData,setAgentData]=useState([])
+    const [agentData, setAgentData] = useState([])
 
-    const getAgentsData=async()=>{
-
-        let response=await allAgents(pageNumber,pageSize);
-        setAgentData(response.data.content);
+    const getAgentsData = async () => {
+        try{
+        let response = await allAgents(pageNumber, pageSize);
+        
+        setAgentData(response.data.content.map((agent)=>{
+            if(agent.active==true){
+                agent.active="ACTIVE";
+            }
+            return agent;
+        }));
         setTotalPages(Math.ceil(parseInt(response.headers['agent-count']) / pageSize));
         setTotalElements(Math.ceil(parseInt(response.headers['agent-count']) / pageSize));
         console.log(response);
+        }
+        catch(error){
+            warningAlert("Some Error Occured");
+        }
 
     }
 
-    const agentPostData={
+    const agentPostData = {
         firstName,
         lastName,
         username,
@@ -57,30 +68,30 @@ const AllAgents = () => {
         pincode
     }
 
-    const addAgentHandler=async()=>{
-        try{
-        let response=await addAgent(agentPostData);
-        setActionData(response)
-        successAlet("agent added")
+    const addAgentHandler = async () => {
+        try {
+            let response = await addAgent(agentPostData);
+            setActionData(response)
+            successAlet("agent added")
         }
-        catch(error){
+        catch (error) {
             warningAlert(error.response.data.message);
         }
     }
 
-    const handleDelete=async(agent)=>{
-        try{
-        let response = await deleteAgent(agent.id);
-        setActionData(response);
-        console.log(agent);
-        successAlet("agent deleted ")
+    const handleDelete = async (agent) => {
+        try {
+            let response = await deleteAgent(agent.id);
+            setActionData(response);
+            console.log(agent);
+            successAlet("agent deleted ")
         }
-        catch(error){
+        catch (error) {
             warningAlert(error.response.data.message)
         }
     }
 
-    const addAgentData={
+    const addAgentData = {
         firstName,
         setFirstName,
         lastName,
@@ -95,88 +106,137 @@ const AllAgents = () => {
         setEmail,
         dateOfBirth,
         setDateOfBirth,
-        houseNo,setHouseNo,
+        houseNo, setHouseNo,
         apartment,
         setApartment,
         city,
         setCity,
         state,
         setState,
-        pincode,setPincode,
-        show,setShow,
+        pincode, setPincode,
+        show, setShow,
         addAgentHandler
     }
 
-   
 
-    
+
+
 
     useEffect(
-        ()=>{
+        () => {
             getAgentsData();
         }
-        ,[]
+        , [pageNumber,pageSize,actionData]
     )
- 
 
-  return (
-    <div>
-        <Navbar></Navbar>
-        <AddAgent data={addAgentData}></AddAgent>
-        <div className='background2 text-center display-3 py-3 text-white fw-bold'>All Agents</div>
-        <div className='container'>
+    const navigate = new useNavigate();
 
-        <div className='row my-5'>
-                        <div className='col-4'>
-                            <PaginationApp
-                                totalPages={totalPages}
-                                pageSize={pageSize}
-                                setPageNumber={setPageNumber}
-                                pageNumber={pageNumber}
 
-                            ></PaginationApp>
-                        </div>
-                        <div className='col-4'>
+    return (
+        <div>
+            <Navbar></Navbar>
+            <AddAgent data={addAgentData}></AddAgent>
+            <div className='background2 text-center display-3 py-3 text-white fw-bold'>All Agents</div>
+            <div className='contianer-fluid'>
 
-                            <input className='rounded-pill px-3 text-primary fw-bold'
-                                placeholder='search here'
-                            ></input>
+                <div className='row'>
 
-                        </div>
-                        <div className='col-2 offset-2'>
-                            <PageSelect
 
-                                totalElements={totalElements}
-                                setPageSize={setPageSize}
-                                setPageNumber={setPageNumber}
-                                setTotalPages={setTotalPages}
-                                pageSize={pageSize}
+                    <div className='col-2'>
+                        <div >
 
-                            ></PageSelect>
+                            <button className='fs-1 btn btn-lg border-0 customButton fw-bold mt-3'
+
+                                onClick={
+                                    () => {
+                                        setShow(true)
+                                    }
+                                }
+
+                            >
+                                Add An Agent
+                            </button>
+                            {/* <button className='fs-1 btn btn-lg border-0 customButton fw-bold mt-3 mt-3'
+
+                                onClick={
+                                    () => {
+                                        navigate('/employee')
+                                    }
+                                }
+                            >
+                                Go To Dashboard
+                            </button> */}
+
                         </div>
                     </div>
-            <div className='row my-5'>
-                <div className='col-12'>
 
-                    <button
-                    className=
-                    'btn btn-lg btn-outline-primary fw-bold'
-                    onClick={()=>setShow(true)}
-                    >Add A new Agent</button>
+                    <div className='col-10'>
 
-                    <Table 
-                    data={agentData} 
-                    canDelete={true}
-                    handleDelete={handleDelete}
-                    
-                    ></Table>
+
+                        <div className='container'>
+
+                            <div className='row my-5'>
+                                <div className='col-4'>
+                                    <PaginationApp
+                                        totalPages={totalPages}
+                                        pageSize={pageSize}
+                                        setPageNumber={setPageNumber}
+                                        pageNumber={pageNumber}
+
+                                    ></PaginationApp>
+                                </div>
+                                <div className='col-4'>
+
+                                    {/* <input className='rounded-pill px-3 text-primary fw-bold'
+                                        placeholder='search here'
+                                    ></input> */}
+
+                                </div>
+                                <div className='col-2 offset-2'>
+                                    <PageSelect
+
+                                        totalElements={totalElements}
+                                        setPageSize={setPageSize}
+                                        setPageNumber={setPageNumber}
+                                        setTotalPages={setTotalPages}
+                                        pageSize={pageSize}
+
+                                    ></PageSelect>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div className='container-fluid'>
+                            <div className='row my-5'>
+
+
+
+                                <div className='col-8 offset-1'>
+
+                                    {/* <button
+                            className=
+                            'btn btn-lg btn-outline-primary fw-bold'
+                            onClick={() => setShow(true)}
+                        >Add A new Agent</button> */}
+
+                                    <Table
+                                        data={agentData}
+                                        canDelete={true}
+                                        handleDelete={handleDelete}
+                                    ></Table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
+
             </div>
+            <Footer></Footer>
         </div>
-        <Footer></Footer>
-    </div>
-  )
+    )
 }
 
 export default AllAgents

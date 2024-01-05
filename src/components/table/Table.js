@@ -11,6 +11,7 @@ const Table = (data) => {
     const handleUpdate = data.handleUpdate;
     const handleDelete = data.handleDelete;
     const handleViewMore =data.handleViewMore
+    // const handleViewMore=data.handleViewMore;
 
     let rowOfUsers;
     let headOfusers;
@@ -80,7 +81,7 @@ const Table = (data) => {
                             }
                             {
                                 canViewMore ? <button className='btn btn-outline-danger'
-                                    onClick={() => handleDelete(d)}
+                                    onClick={() => handleViewMore(d)}
                                 > View More </button> : null
                             }
                         </td>
@@ -94,7 +95,7 @@ const Table = (data) => {
     return (
         <>
 
-            <table class="table table-bordered mt-2 border-primary">
+            <table class="table table-bordered mt-2  table-striped">
                 <thead className='text-center'>
                     <tr className='colspan'>
 

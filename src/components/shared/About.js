@@ -45,17 +45,18 @@ const About = () => {
         <div>
             <Navbar></Navbar>
             {/* <img src={"http://localhost:8081/monosurance/download?file="+filename}/> */}
+            <div className='background2 text-center display-3 py-3 text-white fw-bold'>About Us</div>
             <div className='container-fluid'>
 
                 <div className='row mt-5' >
-                    <div className='col-5'>
-                        <img src={contact} className=''></img>
+                    <div className='col-5 offset-1'>
+                        <img src={contact} className='img-fluid'></img>
                     </div>
-                    <div className='col-5'>
-                        <div className='text-center display-3 fw-bold text2'>
-                            About Us
+                    <div className='col-5 align-items-center'>
+                        <div className='text-center display-3 fw-bold text2 my-5'>
+                            {/* About Us */}
                         </div>
-                        <div className='fs-5 '>
+                        <div className='fs-5 my-5 '>
                             Welcome to MonoSurance, your dedicated partner in protection.
                             We are committed to delivering innovative insurance solutions with a customer-centric approach.
                             At MonoSurance, our experienced team is here to guide you through the intricacies of insurance, ensuring your peace of mind.

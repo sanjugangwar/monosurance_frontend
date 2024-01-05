@@ -11,6 +11,7 @@ const Login = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [roleType, setRoleType] = useState();
+    const [show, setShow] = useState(false);
 
     const navigate = new useNavigate();
 
@@ -19,7 +20,7 @@ const Login = () => {
         e.preventDefault();
         try {
             let response = await login(username, password, roleType);
-            
+
             localStorage.setItem('auth', response.data.accessToken);
             localStorage.setItem('username', response.data.username);
             localStorage.setItem('role', response.data.roleType);
@@ -38,7 +39,7 @@ const Login = () => {
         }
         catch (error) {
 
-            warningAlert(error.response.data.message);
+            warningAlert("Invalid credentials");
 
         }
     }
@@ -95,7 +96,7 @@ const Login = () => {
                                     <label for="floatingInput">Username</label>
                                 </div>
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingPassword" placeholder="Password"
+                                    <input type={show?"text":"password"} class="form-control" id="floatingPassword" placeholder="Password"
 
                                         onChange={
                                             (e) => {
@@ -114,6 +115,14 @@ const Login = () => {
                                         onClick={loginHandler}
 
                                     >Login</button>
+                                    <button className='btn btn-lg px-3 fw-bold btn-outline-primary my-3 ms-2'
+
+                                        onClick={(e)=>{
+                                            e.preventDefault();
+                                            setShow(!show)
+                                        }}
+
+                                    >{show?"Hide Password":"Show Password"}</button>
 
 
 

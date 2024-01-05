@@ -147,3 +147,22 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,31,1) 35%, rgba
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
+
+.customButton{
+
+  background-color: #e2f1aabd;
+  color:#e60c0c
+  
+}
+
+.customButton:hover{
+  background-color: #7799fa;
+  /* background-color: #779afac2; */
+  color:whitesmoke;
+  /* border-radius: 10%; */
+  /* transition: all 0.5s; */
+}
+
+.customBtn:hover{
+  border: 2px solid #7799fa;
+}

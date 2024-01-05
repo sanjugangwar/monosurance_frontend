@@ -31,6 +31,7 @@ const SchemeView = (data) => {
     const [agentId, setAgentId] = useState(0);
     const [policyDocuments, setPolicyDocuments] = useState([]);
     const schemeId = data.schemeId;
+    const [imgCount,setImgCount]=useState(0);
     // let policyDocuments = [];
     let nomineeList = [];
 
@@ -100,6 +101,7 @@ const SchemeView = (data) => {
             }
             )
             if (response) {
+                setImgCount(imgCount+1);
                 successAlet("image successfully uploaded")
             }
         }
@@ -140,6 +142,7 @@ const SchemeView = (data) => {
             console.log(response);
             if (response) {
                 successAlet("policy successfully submitted")
+                navigate('/customer/policy')
             }
         }
         catch (error) {
@@ -149,7 +152,7 @@ const SchemeView = (data) => {
 
     return (
         <div className='my-5'>
-            <div className='text-center fs-2  mb-5'>
+            <div className='text-center fs-1 fw-bold  mb-5'>
                 {
                     data.schemeName
                 }
@@ -158,8 +161,8 @@ const SchemeView = (data) => {
             <div className='container'>
                 <div className='row align-items-center justify-content-center'>
                     <div className='col-6'>
-                        <div className=' p-5'>
-                            nbnbdbsdbbsdmnbdsbcdnscb  hdbdsbcdsbncsdbncds   snbcsd snbcbsdcbsdnc  sdcb sdnbhbcbnd cnxbcndsbcnbadcnsdcnbdsncbdsc
+                        <div className='p-5 fs-3 text-dark'>
+                            
                             {
                                 data.description
                             }
@@ -302,7 +305,7 @@ const SchemeView = (data) => {
                                             }
 
                                         >
-                                            <option selected>Premium Type</option>
+                                            <option selected value="0">Premium Type</option>
                                             <option value="12">Monthly</option>
                                             <option value="4">Quarterly</option>
                                             <option value="2">Half Yearly</option>
@@ -316,8 +319,22 @@ const SchemeView = (data) => {
 
                                     onClick={
                                         () => {
+                                            if(duration<data.minDuration || duration>data.maxDuration){
+                                                warningAlert("Out Of Duration Bound")
+                                                return ;
+                                            }
+                                            else if(investMent<data.minAmount || investMent > data.maxAmount){
+                                                warningAlert("Out Of InvestMent Bound")
+                                                return ;
+                                            }
+                                            else if(!(preimumType=="1" || preimumType=="4" || preimumType=="2" || preimumType=="12")){
+                                                warningAlert("please select a premium type")
+                                                return ;
+                                            }
+                                            else{
                                             setClickCalculate(true)
                                             calculateHandler()
+                                            }
                                         }
                                     }
 
@@ -516,7 +533,20 @@ const SchemeView = (data) => {
 
                                                 onClick={
                                                     () => {
+                                                        if(nomineeName.length==0){
+                                                            warningAlert("please enter nominee")
+                                                            return ;
+                                                        }
+                                                        else if(nomineeRelation.length==0){
+                                                            warningAlert("please eneter nominee relation")
+                                                            return ;
+                                                        }
+                                                        else if(imgCount<2){
+                                                            warningAlert("please upload both images");
+                                                        }
+                                                        else{
                                                         handleSubmit()
+                                                        }
                                                     }
                                                 }
 

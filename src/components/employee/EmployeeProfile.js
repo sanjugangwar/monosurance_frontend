@@ -3,6 +3,9 @@ import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
 import { useNavigate } from 'react-router-dom'
 import { editEmployeePorfile, getEmployeeByUsername } from '../../services/employee/EmployeeService'
+import { alphanumericRegex, bankNameRegex, emailRegex, fullNameRegex, indianMobileRegex, nameRegex, pincodeRegex } from '../validation/Validation'
+import { successAlet, warningAlert } from '../alerts/Alert'
+import { cityError, emailError, firstNameError, houseError, lastNameError, mobileError, pincodeError, stateError } from '../validation/Error'
 const EmployeeProfile = () => {
     const [id, setId] = useState()
     const [firstName, setFirstName] = useState("");
@@ -19,6 +22,7 @@ const EmployeeProfile = () => {
     const [agentData, setAgentData] = useState([])
     const [button, setButton] = useState(false);
     const navigate = new useNavigate();
+    const [errorMsg, setErrorMsg] = useState("")
     const getEmployeeData = async () => {
         let response = await getEmployeeByUsername();
         console.log(response)
@@ -54,11 +58,45 @@ const EmployeeProfile = () => {
 
     const editEmployeeProfiledata = async () => {
 
+        if (!nameRegex.test(firstName)) {
+            warningAlert(firstNameError);
+            return;
+        }
+        else if (!nameRegex.test(lastName)) {
+            warningAlert(lastNameError);
+            return;
+        }
+        else if (!emailRegex.test(email)) {
+            warningAlert(emailError);
+            return;
+        }
+        else if (!indianMobileRegex.test(mobileNumber)) {
+            warningAlert(mobileError);
+            return;
+        }
+        else if (!alphanumericRegex.test(houseNo)) {
+            warningAlert(houseError);
+            return;
+        }
+        else if (!nameRegex.test(city)) {
+            warningAlert(cityError);
+            return;
+        }
+        else if (!fullNameRegex.test(state)) {
+            warningAlert(stateError);
+            return;
+        }
+        else if (!pincodeRegex.test(pinCode)) {
+            warningAlert(pincodeError);
+            return;
+        }
+
+
         try {
 
             let response = await editEmployeePorfile(data);
-            
-            if (response.status==200) {
+
+            if (response.status == 200) {
                 alert("updated scucessfully");
             }
         }
@@ -82,144 +120,220 @@ const EmployeeProfile = () => {
 
             <div className='background2 text-center display-3 py-3 text-white fw-bold'>Employee Profile</div>
 
-            <div className='text-center my-2'>
-                <button className='btn btn-outline-primary fw-bold' onClick={
-                    () => {
-                        navigate('/employee');
-                    }
-                }>Go To Dashboard</button>
-            </div>
+            <div className='container-fluid'>
+                <div className='row'>
+                    <div className='col-2'>
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold mt-3'
 
-
-            <div className='container'>
-                <form class="row g-3 p-5 ">
-                    <div className='col-12 fw-bold fs-2'>
-
-                        Profile Details
-
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="inputEmail4"
-                            value={firstName}
-                            onChange={
-                                (e) => {
-                                    setFirstName(e.target.value);
-                                    setButton(true);
+                            onClick={
+                                () => {
+                                    navigate('/employee')
                                 }
                             }
-                        />
+                        >
+                            Go To Dashboard
+                        </button>
                     </div>
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="inputEmail4"
-
-                            value={lastName}
-                            onChange={
-                                (e) => {
-                                    setLastName(e.target.value);
-                                    setButton(true);
-                                }
-                            }
-                        />
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4"
-
-                            value={email}
-                            onChange={
-                                (e) => {
-                                    setEmail(e.target.value);
-                                    setButton(true);
-                                }
-                            }
-
-                        />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Mobile</label>
-                        <input type="text" class="form-control"
+                    <div className='col-8 offset-1'>
 
 
-                            value={mobileNumber}
-                            onChange={
-                                (e) => {
-                                    setMobileNumber(e.target.value);
-                                    setButton(true);
-                                }
-                            }
+                        <div className='container'>
+                            <form class="row mt-2">
+                                <div className='col-12 fw-bold text-danger text-center mb-3'>
 
-                        />
-                    </div>
+                                    {errorMsg}
 
-                    <div className='col-12 fw-bold fs-2'>
 
-                        Address
+                                </div>
+                                <div className='col-12 fw-bold fs-2'>
 
-                    </div>
+                                    Profile Details
 
-                    <div class="col-md-3">
-                        <label class="form-label">House Number</label>
-                        <input type="text" class="form-control"
+                                </div>
 
-                            value={houseNo}
-                            onChange={
-                                (e) => {
-                                    setHouseNo(e.target.value);
-                                    setButton(true);
-                                }
-                            }
 
-                        />
-                    </div>
+                                <div class="col-md-6">
+                                    <div className='form-floating'>
+                                        <input type="text" class="form-control" id="formfloat"
+                                            value={firstName}
+                                            onChange={
+                                                (e) => {
+                                                    setFirstName(e.target.value);
+                                                    if (!nameRegex.test(e.target.value)) {
+                                                        setErrorMsg("first name should only contains alphabets")
+                                                    }
+                                                    else {
+                                                        setErrorMsg("")
+                                                    }
+                                                }
+                                            }
+                                        />
+                                        <label for="formfloat">First Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div className='form-floating'>
 
-                    <div class="col-md-3">
-                        <label for="inputCity" class="form-label">City</label>
-                        <input type="text" class="form-control" id="inputCity"
+                                        <input type="text" class="form-control" id="inputEmail4"
 
-                            value={city}
-                            onChange={
-                                (e) => {
-                                    setCity(e.target.value);
-                                    setButton(true);
-                                }
-                            }
+                                            value={lastName}
+                                            onChange={
+                                                (e) => {
+                                                    setLastName(e.target.value);
+                                                    if (!nameRegex.test(e.target.value)) {
+                                                        setErrorMsg("last name should only contains alphabets")
+                                                    }
+                                                    else {
+                                                        setErrorMsg("")
+                                                    }
+                                                }
+                                            }
+                                        />
+                                        <label for="inputEmail4" >Last Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div className='form-floating'>
+                                        <input type="email" class="form-control" id="inputEmail4"
 
-                        />
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">State</label>
-                        <input type="text" class="form-control"
+                                            value={email}
+                                            onChange={
+                                                (e) => {
+                                                    setEmail(e.target.value);
+                                                    if (!emailRegex.test(e.target.value)) {
+                                                        setErrorMsg("mail is not valid")
+                                                    }
+                                                    else {
+                                                        setErrorMsg("")
+                                                    }
+                                                }
+                                            }
 
-                            value={state}
-                            onChange={
-                                (e) => {
-                                    setState(e.target.value);
-                                    setButton(true);
-                                }
-                            }
+                                        />
+                                        <label for="inputEmail4" class="form-label">Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                    <div className='form-floating'>
+                                        <input type="text" class="form-control"
+                                            value={mobileNumber}
+                                            onChange={
+                                                (e) => {
+                                                    setMobileNumber(e.target.value);
+                                                    if (!indianMobileRegex.test(e.target.value)) {
+                                                        setErrorMsg("Mobile must contain 10 digits")
+                                                    }
+                                                    else {
+                                                        setErrorMsg("")
+                                                    }
+                                                }
+                                            }
 
-                        />
-                    </div>
+                                        />
+                                        <label class="form-label">Mobile</label>
+                                    </div>
+                                </div>
 
-                    <div class="col-md-3">
-                        <label class="form-label">PinCode</label>
-                        <input type="text" class="form-control"
+                                <div className='col-12 fw-bold fs-2'>
 
-                            value={pinCode}
-                            onChange={
-                                (e) => {
-                                    setPincode(e.target.value);
-                                    setButton(true);
-                                }
-                            }
+                                    Address
 
-                        />
-                    </div>
-                    {
-                        button ? <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-lg"
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div className='form-floating'>
+                                        <input type="text" class="form-control"
+
+                                            value={houseNo}
+                                            onChange={
+                                                (e) => {
+                                                    setHouseNo(e.target.value);
+                                                    if (!alphanumericRegex.test(e.target.value)) {
+                                                        setErrorMsg("house number is not valid")
+                                                    }
+                                                    else {
+                                                        setErrorMsg("")
+                                                    }
+                                                }
+                                            }
+
+                                        />
+                                        <label class="form-label">House Number</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div className='form-floating'>
+                                        <input type="text" class="form-control" id="inputCity"
+
+                                            value={city}
+                                            onChange={
+                                                (e) => {
+                                                    setCity(e.target.value);
+                                                    if (!nameRegex.test(e.target.value)) {
+                                                        setErrorMsg("city contains only alphabets")
+                                                    }
+                                                    else {
+                                                        setErrorMsg("")
+                                                    }
+                                                }
+                                            }
+
+                                        />
+                                        <label for="inputCity" class="form-label">City</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div className='form-floating'>
+                                        <input type="text" class="form-control"
+
+                                            value={state}
+                                            onChange={
+                                                (e) => {
+                                                    setState(e.target.value);
+                                                    if (!fullNameRegex.test(e.target.value)) {
+                                                        setErrorMsg("state contains only alphabets")
+                                                    }
+                                                    else {
+                                                        setErrorMsg("")
+                                                    }
+                                                }
+                                            }
+
+                                        />
+
+                                        <label class="form-label">State</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div className="form-floating">
+                                        <input type="text" class="form-control"
+
+                                            value={pinCode}
+                                            onChange={
+                                                (e) => {
+                                                    setPincode(e.target.value);
+                                                    if (!pincodeRegex.test(e.target.value)) {
+                                                        setErrorMsg("pincode must be of 6 digits")
+                                                    }
+                                                    else {
+                                                        setErrorMsg("")
+                                                    }
+                                                }
+                                            }
+
+                                        />
+                                        <label class="form-label">PinCode</label>
+                                    </div>
+                                </div>
+
+
+
+
+                            </form>
+
+                            <button type="submit" class="btn btn-primary btn-lg mt-3"
 
                                 onClick={
 
@@ -228,10 +342,10 @@ const EmployeeProfile = () => {
                                 }
 
                             >Edit Porfile</button>
-                        </div> : null
-                    }
 
-                </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <Footer></Footer>

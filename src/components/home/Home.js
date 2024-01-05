@@ -1,7 +1,7 @@
 import React from 'react'
 
 import homepage1 from '../../images/homepage1.jpg'
-import Insurance from '../../images/Insurance.png'
+import Insurance from '../../images/product-insurance.png'
 import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
 import Faq from '../shared/Faq'
@@ -87,53 +87,21 @@ const Home = () => {
 
         <div className='container-fluid'>
           <div className='row background2'>
-            <div className='text-center text-white display-1 fw-bold py-3'>Our Plans</div>
+            <div className='text-center text-white display-1 fw-bold py-3'>Why Insurance?</div>
           </div>
         </div>
 
-        <div className='container'>
+        <div className='container-fluid'>
           <div className='row mt-5'>
-            <div className='col-6'>
+            <div className='col-5 offset-1'>
 
               <img src={Insurance} alt='insurance' style={{ height: "50vh" }} className='img-fluid'></img>
 
             </div>
-            <div className='col-6'>
-              <div className='row'>
-
-                <div className='col-6'>
-                  <div className='card border-danger'>
-                    <div className='card-body display-3 text-center text1 fw-bold'>
-                      Child Plan
-                    </div>
-                  </div>
-                </div>
-
-                <div className='col-6'>
-                  <div className='card border-danger'>
-                    <div className='card-body display-3 text-center text1 fw-bold'>
-                      Growth Plan
-                    </div>
-                  </div>
-                </div>
-
-                <div className='col-6 mt-5'>
-                  <div className='card border-danger'>
-                    <div className='card-body display-3 text-center text1 fw-bold'>
-                      Cancer Plan
-                    </div>
-                  </div>
-                </div>
-
-                <div className='col-6 mt-5'>
-                  <div className='card border-danger'>
-                    <div className='card-body display-3 text-center text1 fw-bold'>
-                      Health Plan
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+            <div className='col-5 p-5 fs-3 text-dark align-items-center'>
+              Insurance plans will help you pay for medical emergencies, hospitalisation, 
+              contraction of any illnesses and treatment, and medical care required in the future. 
+              The financial loss to the family due to the unfortunate death of the sole earner can be covered by insurance plans.
             </div>
 
 

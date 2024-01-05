@@ -1,5 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { warningAlert } from '../alerts/Alert';
+import { cardRegex, cvvRegex, expiryDateRegex } from '../validation/Validation';
+import { cardNumberError, cvvError, expiryError, paymentTypeError } from '../validation/Error';
 
 function Payment(data) {
 
@@ -11,6 +14,23 @@ function Payment(data) {
     const handleShow = () => data.setShow(true);
 
     const handleSubmit = () => {
+
+        if(!(data.paymentType=="CREDIT_CARD" || data.paymentType=="DEBIT_CARD")){
+            warningAlert(paymentTypeError)
+            return ;
+        }
+        else if(!cardRegex.test(data.cardNumber)){
+            warningAlert(cardNumberError);
+            return ;
+        }
+        else if(!expiryDateRegex.test(data.expiry)){
+            warningAlert(expiryError)
+            return ;
+        }
+        else if(!cvvRegex.test(data.cvv)){
+            warningAlert(cvvError);
+            return ;
+        }
 
         data.handlePay();
         data.setShow(false);

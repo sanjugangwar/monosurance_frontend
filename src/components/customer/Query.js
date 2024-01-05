@@ -11,7 +11,7 @@ import { addQuestion, allQuestions } from '../../services/query/Query'
 
 const Query = () => {
 
-    
+
     const navigate = new useNavigate();
 
     const [question, setQuestion] = useState("");
@@ -89,79 +89,99 @@ const Query = () => {
         <>
 
             <Navbar></Navbar>
+            <div className='background2 text-center display-3 py-3 text-white fw-bold mb-3'>Query Section</div>
 
-            <div className='text-center text2 display-4 fw-bold my-4'>Please Ask Your Query</div>
-
-            <div className='container'>
-                <div className='row align-items-center'>
-                    <div className='col-lg-6 col-md-12'>
-                        <img src={questionimg} className='img-fluid'></img>
-                    </div>
-                    <div className='col-lg-6 col-md-12 text-center'>
-                        <div class="form-floating">
-                            <textarea class="form-control text-black fw-bold" placeholder="Leave a comment here" id="floatingTextarea2" style={{ minHeight: "10rem" }}
-
-                                onChange={
-                                    (e) => {
-
-
-                                        setQuestion(e.target.value);
-
-                                    }
-                                }
-
-                            ></textarea>
-                            <label for="floatingTextarea2">Your Query</label>
-                        </div>
-                        <button className='btn btn-lg btn-outline-primary mt-3' onClick={handleSubmit}>Submit</button>
-                    </div>
-                </div>
-            </div>
-
-
-            <div className='text-center text2 display-4 fw-bold my-4'>Previous Queries</div>
-
-            <div className='container'>
+            <div className='container-fluid'>
                 <div className='row'>
-                    <div className='col-10 offset-1'>
+                    {/* <div className='col-2'>
 
-                        {
-                            questions.length > 0 &&
-                            questions.map(
-                                (question) => {
-                                    return <>
-                                        <div class="accordion" id="accordionExample">
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header ">
-                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        {question.question}
-                                                        {
-                                                            question.active == false ? <p className='text-success'>Answered</p> : <p className='text-danger'>Not Answered</p>
-                                                        }
-                                                    </button>
 
-                                                </h2>
-                                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                                                    <div class="accordion-body">
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold mt-3'
 
-                                                        <input className='w-100 text-dark border-primary fw-bold' style={{ minHeight: "5rem" }}
-
-                                                            value={question.answer}
-
-                                                        ></input>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </>
+                            onClick={
+                                () => {
+                                    navigate('/customer')
                                 }
-                            )
-                        }
+                            }
+                        >
+                            Go To Dashboard
+                        </button>
+                    </div> */}
+
+                    <div className='col-12'>
+                        <div className='container'>
+                            <div className='row align-items-center'>
+                                <div className='col-lg-6 col-md-12'>
+                                    <img src={questionimg} className='img-fluid'></img>
+                                </div>
+                                <div className='col-lg-6 col-md-12 text-center'>
+                                    <div class="form-floating">
+                                        <textarea class="form-control text-black fw-bold" placeholder="Leave a comment here" id="floatingTextarea2" style={{ minHeight: "10rem" }}
+
+                                            onChange={
+                                                (e) => {
+
+
+                                                    setQuestion(e.target.value);
+
+                                                }
+                                            }
+
+                                        ></textarea>
+                                        <label for="floatingTextarea2">Your Query</label>
+                                    </div>
+                                    <button className='btn btn-lg btn-outline-primary mt-3' onClick={handleSubmit}>Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div className='text-center text2 display-4 fw-bold my-4'>Previous Queries</div>
+
+                        <div className='container'>
+                            <div className='row'>
+                                <div className='col-10 offset-1'>
+
+                                    {
+                                        questions.length > 0 &&
+                                        questions.map(
+                                            (question) => {
+                                                return <>
+                                                    <div class="accordion" id="accordionExample">
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header ">
+                                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                    {question.question}
+                                                                    {
+                                                                        question.active == false ? <p className='text-success'>Answered</p> : <p className='text-danger'>Not Answered</p>
+                                                                    }
+                                                                </button>
+
+                                                            </h2>
+                                                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                                                <div class="accordion-body">
+
+                                                                    <input className='w-100 text-dark border-primary fw-bold' style={{ minHeight: "5rem" }}
+
+                                                                        value={question.answer}
+
+                                                                    ></input>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </>
+                                            }
+                                        )
+                                    }
 
 
 
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

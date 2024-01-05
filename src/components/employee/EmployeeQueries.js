@@ -84,8 +84,8 @@ const EmployeeQueries = () => {
 
     useEffect(
         () => {
-            if(valid)
-            getQuestionsData();
+            if (valid)
+                getQuestionsData();
         }
         , [actionData]
     )
@@ -103,69 +103,88 @@ const EmployeeQueries = () => {
         <>
             <Navbar></Navbar>
 
-            <div className='text-center text2 display-4 fw-bold my-4'>All Queries</div>
+            <div className='text-center background2 text-white  display-4 fw-bold p-3'>All Queries</div>
 
-            <div></div>
-
-            <div className='container'>
+            <div className='container-fluid'>
                 <div className='row'>
-                    <div className='col-8 offset-2'>
+                    <div className='col-2'>
 
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold mt-3'
 
-
-                        {
-                            questions.length > 0 &&
-                            questions.map(
-                                (question) => {
-                                    return <>
-                                        <div class="accordion" >
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header">
-                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" >
-                                                        {question.question}
-                                                        {
-                                                            question.active == false ? <p className='text-success'>Answered</p> : <p className='text-danger'>Not Answered</p>
-                                                        }
-                                                    </button>
-
-                                                </h2>
-                                                <div id="collapseOne" class="accordion-collapse collapse show" >
-                                                    <div class="accordion-body">
-
-                                                        <input className='w-100 text-dark border-primary fw-bold' style={{ minHeight: "5rem" }}
-
-                                                            value={question.answer}
-
-                                                            onChange={
-                                                                (e) => {
-                                                                    setAnswer(e.target.value);
-                                                                }
-                                                            }
-
-                                                        ></input>
-
-                                                        <button className='btn btn-outline-primary fw-bold mt-3'
-
-                                                            onClick={
-                                                                () => {
-                                                                    handleSubmit(question);
-                                                                }
-                                                            }
-
-                                                        >Submit</button>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </>
+                            onClick={
+                                () => {
+                                    navigate('/employee')
                                 }
-                            )
-                        }
+                            }
+                        >
+                            Go To Dashboard
+                        </button>
+
+                    </div>
+                    <div className='col-10'>
+
+                        <div className='container'>
+                            <div className='row'>
+                                <div className='col-8 offset-2 mt-3'>
 
 
 
+                                    {
+                                        questions.length > 0 &&
+                                        questions.map(
+                                            (question) => {
+                                                return <>
+                                                    <div class="accordion" >
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header">
+                                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" >
+                                                                    {question.question}
+                                                                    {
+                                                                        question.active == false ? <p className='text-success'>Answered</p> : <p className='text-danger'>Not Answered</p>
+                                                                    }
+                                                                </button>
+
+                                                            </h2>
+                                                            <div id="collapseOne" class="accordion-collapse collapse show" >
+                                                                <div class="accordion-body">
+
+                                                                    <input className='w-100 text-dark border-primary fw-bold' style={{ minHeight: "5rem" }}
+
+                                                                        value={question.answer}
+
+                                                                        onChange={
+                                                                            (e) => {
+                                                                                setAnswer(e.target.value);
+                                                                            }
+                                                                        }
+
+                                                                    ></input>
+
+                                                                    <button className='btn btn-outline-primary fw-bold mt-3'
+
+                                                                        onClick={
+                                                                            () => {
+                                                                                handleSubmit(question);
+                                                                            }
+                                                                        }
+
+                                                                    >Submit</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </>
+                                            }
+                                        )
+                                    }
+
+
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,10 @@ import Footer from '../navbar/Footer'
 import { agentClaimApprove, agentClaims, policyClaimed, policyClaims } from '../../services/admin/AdminServices';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { successAlet, warningAlert } from '../alerts/Alert';
+import { getAgentPolicy } from '../../services/agents/AgentService';
+import AgentMoreInfo from './AgentMoreInfo';
+import Claims from './Claims';
+import PolicyMoreInfo from './PolicyMoreInfo';
 
 const ApproveClams = () => {
 
@@ -14,7 +18,12 @@ const ApproveClams = () => {
     const [policies, setPolicies] = useState([])
     const [agentId, setAgentId] = useState();
     const [claimId, setClaimId] = useState();
-    const [responseData,setResponseData]=useState();
+    const [responseData, setResponseData] = useState();
+    const [moreInfo, setMoreInfo] = useState(false);
+    const [policyMoreInfo, setPolicyMoreInfo] = useState(false);
+    const [agentProp, setAgentProp] = useState("");
+    const [policy, setPolicy] = useState([]);
+    const [pageNumber, setPageNumber] = useState(0);
 
     const agnetClamHandler = async () => {
         try {
@@ -51,45 +60,53 @@ const ApproveClams = () => {
 
     const claimHandler = (agent) => {
 
-        setAgentsClaim(agent.claims);
+        let x = [];
+
+        for (let claim of agent.claims) {
+            if (claim.claimStatus == "PENDING") {
+                x.push(claim);
+            }
+        }
+
+        setAgentsClaim(x);
 
     }
 
-    const agentClaimApproveHandler = async(claim) => {
+    const agentClaimApproveHandler = async (claim) => {
         let data = {
             agentId,
-            claimId:claim.claimId
+            claimId: claim.claimId
         }
 
-        if(claim.claimStatus=="APPROVED"){
+        if (claim.claimStatus == "APPROVED") {
             warningAlert("Already Approved");
-            return ;
+            return;
         }
 
         try {
-            console.log("data",claim);
-           let response= await agentClaimApprove(data);
-           setResponseData(response);
-           if(response){
-            successAlet("claim approved");
-            
-           }
+            console.log("data", claim);
+            let response = await agentClaimApprove(data);
+            setResponseData(response);
+            if (response) {
+                successAlet("claim approved");
+
+            }
         }
         catch (error) {
             warningAlert("claim approve failed")
         }
     }
 
-    const polciyApproveClaimHandler=async(policy)=>{
+    const polciyApproveClaimHandler = async (policy) => {
 
-        try{
+        try {
             console.log(policy)
-           let response=await  policyClaimed(policy.policyNo);
-           if(response){
-            successAlet("policy claimed")
-           }
+            let response = await policyClaimed(policy.policyNo);
+            if (response) {
+                successAlet("policy claimed")
+            }
         }
-        catch(error){
+        catch (error) {
 
             warningAlert("claim approve failed")
 
@@ -97,62 +114,69 @@ const ApproveClams = () => {
 
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if(show1){
+        if (show1) {
             agnetClamHandler();
         }
-        else{
+        else {
             policyClaimHandler();
         }
 
-    },[responseData])
+    }, [responseData])
 
     const navigate = new useNavigate();
     return (
         <>
             <Navbar></Navbar>
             <div className='container-fluid'>
+            <div className='background2 text-center display-3 py-3 text-white fw-bold'>Claims</div>
                 <div className='row'>
                     <div className='col-2'>
-                        <button className='border-0 btn-outline-danger btn mt-3'
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold mt-3'
 
                             active={show1}
 
                             onClick={agnetClamHandler}
 
                         >
-                            <div class="card background1" >
+                            <div class="card " style={{
+                                backgroundColor:"#e2f1aabd"
+                            }} >
                                 <div class="card-body" >
-                                    <h5 class="card-title fs-1 fw-bold py-3 text-white">Agent Claims</h5>
+                                    <h5 class="card-title fs-1 fw-bold py-3 text-danger">Agent Claims</h5>
 
                                 </div>
                             </div>
                         </button>
-                        <button className='border-0 btn-outline-danger btn mt-3 '
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold  mt-3'
 
                             onClick={
                                 policyClaimHandler
                             }
 
                         >
-                            <div class="card background1" >
+                            <div class="card " style={{
+                                backgroundColor:"#e2f1aabd"
+                            }} >
                                 <div class="card-body" >
-                                    <h5 class="card-title fs-1 fw-bold py-3 text-white">Policy Claims</h5>
+                                    <h5 class="card-title fs-1 fw-bold py-3 text-danger">Policy Claims</h5>
 
                                 </div>
                             </div>
                         </button>
-                        <button className='border-0 btn-outline-danger btn mt-3'
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold  mt-3'
 
                             onClick={
                                 () => navigate('/admin')
                             }
 
                         >
-                            <div class="card background1" >
+                            <div class="card " style={{
+                                backgroundColor:"#e2f1aabd"
+                            }} >
                                 <div class="card-body" >
-                                    <h5 class="card-title fs-1 fw-bold py-3 text-white"> Go To Dashboard</h5>
+                                    <h5 class="card-title fs-1 fw-bold py-3 text-danger"> Go To Dashboard</h5>
 
                                 </div>
                             </div>
@@ -187,16 +211,32 @@ const ApproveClams = () => {
                                                                 <td>{agent.userDetails.firstName}</td>
                                                                 <td>{agent.userDetails.lastName}</td>
                                                                 <td>{agent.totalCommission}</td>
-                                                                <td><button className='btn btn-lg btn-outline-success'
+                                                                <td>
+                                                                    <button className='btn btn-lg btn-outline-success'
 
-                                                                    onClick={
-                                                                        () => {
-                                                                            claimHandler(agent)
-                                                                            setAgentId(agent.agentId);
+                                                                        onClick={
+                                                                            () => {
+                                                                                claimHandler(agent)
+                                                                                setAgentId(agent.agentId);
+                                                                            }
                                                                         }
-                                                                    }
 
-                                                                >Claims</button></td>
+                                                                    >Claims</button>
+
+                                                                    <button className='btn btn-lg btn-outline-info ms-3'
+
+                                                                        onClick={
+                                                                            () => {
+                                                                                // moreInfoHandler(agent)
+                                                                                setAgentId(agent.agentId);
+                                                                                setMoreInfo(!moreInfo)
+                                                                                setAgentProp(agent);
+                                                                            }
+                                                                        }
+
+                                                                    >More Info</button>
+
+                                                                </td>
                                                             </tr>
                                                         )
                                                     }
@@ -205,6 +245,15 @@ const ApproveClams = () => {
 
                                         </tbody>
                                     </table>
+                                    {
+                                        moreInfo ?
+                                            <>
+                                                {/* <div>More Info</div> */}
+                                                <AgentMoreInfo data={agentProp}></AgentMoreInfo>
+
+                                            </> : null
+                                    }
+
 
 
                                     {
@@ -229,6 +278,7 @@ const ApproveClams = () => {
                                                         {
                                                             agentsClaim.map(
                                                                 (claim) => {
+
                                                                     return (
                                                                         <tr>
                                                                             <th scope="row">{claim.claimId}</th>
@@ -245,7 +295,7 @@ const ApproveClams = () => {
                                                                                     }
                                                                                 }
 
-                                                                            >{claim.claimStatus=="PENDING"?"Approve":"APPROVED"}</button></td>
+                                                                            >{claim.claimStatus == "PENDING" ? "Approve" : "APPROVED"}</button></td>
                                                                         </tr>
                                                                     )
                                                                 }
@@ -291,15 +341,31 @@ const ApproveClams = () => {
                                                                 <td>{policy.claims.claimAmount}</td>
                                                                 <td>{policy.issueDate.substr(0, 10)}</td>
                                                                 <td>{policy.maturityDate.substr(0, 10)}</td>
-                                                                <td><button className='btn btn-lg btn-outline-success'
+                                                                <td>
+                                                                    <button className='btn btn-lg btn-outline-success'
 
-                                                                    onClick={
-                                                                        () => {
-                                                                            polciyApproveClaimHandler(policy)
+                                                                        onClick={
+                                                                            () => {
+                                                                                polciyApproveClaimHandler(policy)
+                                                                            }
                                                                         }
-                                                                    }
 
-                                                                >Approve</button></td>
+                                                                    >Approve</button>
+
+                                                                    <button className='btn btn-lg btn-outline-info ms-2'
+
+                                                                        onClick={
+                                                                            () => {
+                                                                                console.log(policy)
+                                                                                setPolicyMoreInfo(!policyMoreInfo)
+                                                                                setPolicy(policy);
+                                                                            }
+                                                                        }
+
+                                                                    >More Info</button>
+
+
+                                                                </td>
                                                             </tr>
                                                         )
                                                     }
@@ -308,6 +374,18 @@ const ApproveClams = () => {
 
                                         </tbody>
                                     </table>
+
+                                    {
+                                        policyMoreInfo ?
+                                            <>
+                                                {/* <div>More Info</div> */}
+                                                <div className='justify-content-center'> 
+                                                    <PolicyMoreInfo data={policy}></PolicyMoreInfo>
+                                                </div>
+
+
+                                            </> : null
+                                    }
 
                                 </> : null
                         }

@@ -44,6 +44,7 @@ const InsuranceAccounts = () => {
         // <></>
         <>
             <Navbar></Navbar>
+            <div className='background2 text-center display-3 py-3 text-white fw-bold mb-3'>All Policies</div>
             {
                 policy != [] ?
 
@@ -53,7 +54,7 @@ const InsuranceAccounts = () => {
 
 
                             <div className='col-12'>
-                                <div className='text-center text2 display-4 fw-bold my-4'>Your Policies</div>
+                                {/* <div className='text-center text2 display-4 fw-bold my-4'>All Policies</div> */}
 
                                 <PaginationApp
                                     totalPages={totalPages}
@@ -87,7 +88,7 @@ const InsuranceAccounts = () => {
                                         <div class="form-floating mb-3">
                                             <input type="number" class="form-control text-primary fw-bold" id="floatingInput"
 
-                                                value={policy.premiumAmount}
+                                                value={parseInt(policy.premiumAmount)}
 
 
                                             />
@@ -112,7 +113,7 @@ const InsuranceAccounts = () => {
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control text-primary fw-bold" id="floatingInput"
 
-                                                value={policy.issueDate}
+                                                value={policy.issueDate?.substr(0,10)}
 
 
                                             />
@@ -123,7 +124,7 @@ const InsuranceAccounts = () => {
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control text-primary fw-bold" id="floatingInput"
 
-                                                value={policy.maturityDate}
+                                                value={policy.maturityDate?.substr(0,10)}
 
 
                                             />
@@ -159,7 +160,7 @@ const InsuranceAccounts = () => {
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control text-primary fw-bold" id="floatingInput"
 
-                                                value={policy.profitAmount}
+                                                value={parseInt(policy.profitAmount)}
 
 
                                             />
@@ -170,7 +171,7 @@ const InsuranceAccounts = () => {
                                         <div class="form-floating mb-3">
                                             <input type="text" class="form-control text-primary fw-bold" id="floatingInput"
 
-                                                value={policy.sumAssured}
+                                                value={parseInt(policy.sumAssured)}
 
 
                                             />
@@ -282,9 +283,9 @@ const InsuranceAccounts = () => {
                                             payments.map(
                                                 (payment) => {
                                                     return <tr>
-                                                        <th scope="row">{payment.amount}</th>
-                                                        <td>{payment.paymentDate}</td>
-                                                        <td>UnPaid</td>
+                                                        <th scope="row">{parseInt(payment.amount)}</th>
+                                                        <td>{payment.paymentDate.substr(0,10)}</td>
+                                                        <td>{payment.paymentStatus=="PAID"?"PAID":"UNPAID"}</td>
                                                         {/* <td><button className='btn btn-success btn-lg fw-bold'>Pay</button></td> */}
                                                     </tr>
 

@@ -47,8 +47,8 @@ const Schemes = () => {
 
     const navigate=new useNavigate();
 
-    let normalButtonClass ='btn btn-lg btn-outline-success sidebutton';
-    let activeButtonClass='btn btn-lg btn-outline-success sidebutton active'
+    let normalButtonClass ='fs-1 btn btn-lg border-0 customButton fw-bold mt-3';
+    let activeButtonClass='fs-1 btn btn-lg border-0 customButton fw-bold  mt-3'
 
     return (
         <>
@@ -87,6 +87,7 @@ const Schemes = () => {
             </div> */}
 
             <div className='container-fluid'>
+            <div className='background2 text-center display-3 text-white fw-bold py-3'>All Schemes</div>
                 <div className='row'>
                     <div className='col-lg-2 mt-5 ms-5'>
                         <button className={buttonValue=="add"?activeButtonClass:normalButtonClass}
@@ -110,15 +111,7 @@ const Schemes = () => {
                         >
                             Update A Scheme
                         </button>
-                        {/* <button className={buttonValue=="read"?activeButtonClass:normalButtonClass}
-                        onClick={
-                            ()=>{
-                                setbuttonValue("read")
-                            }
-                        }
-                        >
-                            show All Scheme
-                        </button> */}
+                        
                         <button className={buttonValue=="delete"?activeButtonClass:normalButtonClass}
                         
                         onClick={
@@ -144,7 +137,7 @@ const Schemes = () => {
 
                       
                     </div>
-                    <div className='col-lg-8 mt-5 offset-1'>
+                    <div className='col-lg-8 mt-2 offset-1'>
                         {
                             buttonValue=="add"?<AddScheme></AddScheme>:null
 

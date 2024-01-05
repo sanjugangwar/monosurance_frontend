@@ -21,13 +21,14 @@ function AddPlan(data) {
 
 
             <Modal
+                centered={true}
                 show={data.show}
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
             >
-                <Modal.Header closeButton>
-                    <Modal.Title >Add New Plan</Modal.Title>
+                <Modal.Header closeButton className='background2'>
+                    <Modal.Title className='text-white fw-bold fs-3'>Add New Plan</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 

@@ -3,15 +3,16 @@ import profile from '../../images/profile.png'
 import plan from '../../images/plan.jpg'
 import Navbar from '../navbar/Navbar'
 import Footer from '../navbar/Footer'
-import marketting from '../../images/What-is-marketing.webp'
-import customer from '../../images/customer.jpg'
+import marketting from '../../images/markettingimg.png'
+import customer from '../../images/addCustomer.png'
 import insurace_account from '../../images/insurance_account.png'
-import payment from '../../images/payment.png'
-import commission from '../../images/commission.webp'
+import customers from '../../images/customer.jpg'
+
+import commission from '../../images/salary.png'
 import { useNavigate } from 'react-router-dom'
 const Agent = () => {
 
-    const navigate=new useNavigate();
+    const navigate = new useNavigate();
 
     return (
         <div>
@@ -21,96 +22,137 @@ const Agent = () => {
 
                 <div className='row my-5'>
                     <div className='col-4'>
-                        <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={profile} className='rounded-pill'
-                                    style={{
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Profile</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    onClick={
-                                        ()=>{
-                                            navigate('/agentProfile')
-                                        }
-                                    }
-                                    >View More</button>
-                                </div>
 
-                            </div>
+                        <div class="card d-flex ">
+                            <button className='btn btn-lg customBtn'
+                                onClick={
+                                    () => {
+                                        navigate('/agentProfile')
+                                    }
+                                }
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={profile} className='rounded-pill'
+                                        style={{
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block'>
+                                        <div className='text2 fw-bold fs-1 ms-5 '>Profile</div>
+
+                                    </div>
+
+                                </div>
+                            </button>
                         </div>
+
                     </div>
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={marketting} className=' img-fluid pe-5'
-                                    style={{
+                            <button className='btn btn-lg customBtn' onClick={
+                                () => { navigate('/agent/marketting') }}
 
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Marketting</div>
-                                    <button className='btn btn-lg btn-outline-success'>View More</button>
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={marketting} className=' img-fluid pe-5'
+                                        style={{
+
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className=' fw-bold fs-1 text2'>Marketting</div>
+
+                                    </div>
+
+
                                 </div>
-
-                            </div>
+                            </button>
                         </div>
                     </div>
                     <div className='col-4'>
+
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={customer} className='rounded-pill'
-                                    style={{
+                            <button className='btn btn-lg customBtn'
 
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Customers</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={
-                                        ()=>{
-                                            navigate('/agent/addCustomer')
-                                        }
+                                onClick={
+                                    () => {
+                                        navigate('/agent/addCustomer')
                                     }
-                                    
-                                    >View More</button>
-                                </div>
+                                }
 
-                            </div>
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={customer}
+                                        style={{
+
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1'> Add Customer</div>
+
+                                    </div>
+
+                                </div>
+                            </button>
                         </div>
+
                     </div>
                 </div>
                 <div className='row my-5 justify-content-center'>
-                   
-                    
+
+
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={commission} className='rounded-pill'
-                                    style={{
+                            <button className='btn btn-lg customBtn'
 
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Commission</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={
-                                        ()=>{
-                                            navigate('/agent/commission')
-                                        }
+                                onClick={
+                                    () => {
+                                        navigate('/agent/commission')
                                     }
-                                    
-                                    >View More</button>
-                                </div>
+                                }
 
-                            </div>
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={commission} className='img-fluid'
+                                        style={{
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1 ms-4'>Income</div>
+
+                                    </div>
+
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div className='col-4'>
+                        <div class="card d-flex ">
+                            <button className='btn btn-lg customBtn'
+
+                                onClick={
+                                    () => {
+                                        navigate('/agent/customers')
+                                    }
+                                }
+
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={customers} className='img-fluid'
+                                        style={{
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1 '>All Customers</div>
+
+                                    </div>
+
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -118,7 +160,7 @@ const Agent = () => {
 
             <Footer></Footer>
 
-        </div>
+        </div >
     )
 }
 

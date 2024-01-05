@@ -1,6 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import { alphanumericRegex, bankNameRegex, eightCharAlphanumericPasswordRegex, emailRegex, fullNameRegex, indianMobileRegex, nameRegex, pincodeRegex } from '../validation/Validation'
+import { successAlet, warningAlert } from '../alerts/Alert'
+import { cityError, emailError, firstNameError, houseError, lastNameError, mobileError, passwordError, pincodeError, stateError } from '../validation/Error'
+
 function AddAgent(data) {
 
     data = data.data;
@@ -11,6 +15,40 @@ function AddAgent(data) {
     const handleShow = () => data.setShow(true);
 
     const handleSubmit = () => {
+
+        if (!nameRegex.test(data.firstName)) {
+            warningAlert(firstNameError);
+            return;
+        }
+        else if (!nameRegex.test(data.lastName)) {
+            warningAlert(lastNameError);
+            return;
+        }
+        else if (!emailRegex.test(data.email)) {
+            warningAlert(emailError);
+            return;
+        }
+        else if (!indianMobileRegex.test(data.mobileNumber)) {
+            warningAlert(mobileError);
+            return;
+        }
+        else if (!alphanumericRegex.test(data.houseNo)) {
+            warningAlert(houseError);
+            return;
+        }
+        else if (!nameRegex.test(data.city)) {
+            warningAlert(cityError);
+            return;
+        }
+        else if (!fullNameRegex.test(data.state)) {
+            warningAlert(stateError);
+            return;
+        }
+       
+        else if (!eightCharAlphanumericPasswordRegex.test(data.password)) {
+            warningAlert(passwordError)
+            return;
+        }
 
         data.addAgentHandler();
         data.setShow(false);
@@ -25,13 +63,15 @@ function AddAgent(data) {
 
 
             <Modal
+                size="lg"
+                centered={true}
                 show={data.show}
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Agent</Modal.Title>
+                <Modal.Header closeButton className='background2'>
+                    <Modal.Title className='text-white fw-bold fs-3'>Add Agent</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -85,21 +125,30 @@ function AddAgent(data) {
                                         />
                                         <label for="floatingInput">Username</label>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingPassword"
-                                        
-                                        value={data.password}
 
-                                         onChange={
-                                             (e)=>{
-                                                 data.setPassword(e.target.value)
-                                             }
-                                             
-                                         }
-                                
+                                    <div class="form-floating mb-3">
+                                        <input type="date" class="form-control" placeholder='YYYY-MM-DD'
+                                        
+                                        value={data.dateOfBirth}
+                                            max="2005-12-31"
+
+                                            onChange={
+                                                (e) => {
+                                                    const selectedDate = e.target.value;
+                                                    let formattedDate = new Date(selectedDate)
+                                                        .toISOString()
+                                                        .split("T")[0];
+                                                    console.log(formattedDate.substring(0,4));
+                                                    data.setDateOfBirth(formattedDate);
+                                                
+                                                }
+
+                                            }
+                                        
                                         />
-                                        <label for="floatingPassword">Password</label>
+                                        <label for="floatingPassword">Date Of Birth</label>
                                     </div>
+                                   
                                     <div class="form-floating mb-3">
                                         <input type="text" class="form-control" id="floatingPassword" 
                                         
@@ -168,21 +217,21 @@ function AddAgent(data) {
                                         <label for="floatingInput">Email address</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" placeholder='YYYY-MM-DD'
+                                        <input type="text" class="form-control" id="floatingPassword"
                                         
-                                        value={data.dateOfBirth}
+                                        value={data.password}
 
                                          onChange={
                                              (e)=>{
-                                                 data.setDateOfBirth(e.target.value)
+                                                 data.setPassword(e.target.value)
                                              }
                                              
                                          }
                                 
-                                        
                                         />
-                                        <label for="floatingPassword">Date Of Birth</label>
+                                        <label for="floatingPassword">Password</label>
                                     </div>
+                                    
 
                                     <div class="form-floating mb-3">
                                         <input type="text" class="form-control" id="floatingPassword"

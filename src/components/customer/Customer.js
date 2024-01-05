@@ -10,7 +10,7 @@ import payment from '../../images/payment.png'
 import { useNavigate } from 'react-router-dom'
 const Customer = () => {
 
-    const navigate=new useNavigate();
+    const navigate = new useNavigate();
 
     return (
         <div>
@@ -21,78 +21,85 @@ const Customer = () => {
                 <div className='row my-5'>
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={profile} className='rounded-pill'
-                                    style={{
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block ms-3'>
-                                    <div className='text2 fw-bold fs-1'>Profile</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={
-                                        ()=>{
-                                            navigate('/customer/profile')
-                                        }
-                                    }
-                                    >View More</button>
-                                </div>
+                            <button className='btn btn-lg customBtn'
 
-                            </div>
+                                onClick={
+                                    () => {
+                                        navigate('/customer/profile')
+                                    }
+                                }
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={profile} className='rounded-pill'
+                                        style={{
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block ms-3'>
+                                        <div className='text2 fw-bold fs-1'>Profile</div>
+
+                                    </div>
+
+                                </div>
+                            </button>
                         </div>
                     </div>
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={plan} className=' img-fluid pe-5'
-                                    style={{
+                            <button className='btn btn-lg customBtn'
 
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Policies</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={
-                                        ()=>navigate('/customer/policy')
-                                    }
-                                    
-                                    >View More</button>
+                                onClick={
+                                    () => navigate('/customer/policy')
+                                }
+
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={plan} className=' img-fluid pe-5'
+                                        style={{
+
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1'>Policies</div>
+
+                                    </div>
+
                                 </div>
-
-                            </div>
+                            </button>
                         </div>
+
                     </div>
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={queries} className='rounded-pill'
-                                    style={{
+                            <button className='btn btn-lg customBtn'
 
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Queries</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={
-                                        ()=>{
-                                            navigate('/customer/query')
-                                        }
+                                onClick={
+                                    () => {
+                                        navigate('/customer/query')
                                     }
-                                    
-                                    >View More</button>
-                                </div>
+                                }
 
-                            </div>
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={queries} className='rounded-pill'
+                                        style={{
+
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1'>Queries</div>
+
+                                    </div>
+
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div className='row my-5 justify-content-center'>
-                    <div className='col-4'>
+                    {/* <div className='col-4'>
                         <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
                                 <img src={document} className='rounded-pill'
@@ -108,9 +115,9 @@ const Customer = () => {
 
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className='col-4'>
-                        <div class="card d-flex ">
+                        {/* <div class="card d-flex ">
                             <div class="card-body d-flex align-items-center">
                                 <img src={payment} className='rounded-pill'
                                     style={{
@@ -124,14 +131,14 @@ const Customer = () => {
                                 </div>
 
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
 
             <Footer></Footer>
 
-        </div>
+        </div >
     )
 }
 

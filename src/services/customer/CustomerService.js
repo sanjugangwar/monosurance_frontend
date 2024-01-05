@@ -29,7 +29,7 @@ export const allCustomers=async (pageNumber, pageSize) => {
 
 export const addCustomer=async (data)=>{
     try {
-
+        console.log("add customer")
         let response = await axios.post(
             'http://localhost:8081/monosurance/addcustomer', data, {
             headers: {
@@ -94,5 +94,32 @@ export const editCustomerPorfile=async (data)=>{
 
     }
 
+
+}
+
+export const allNewCustomers=async (pageNumber, pageSize) => {
+
+    try {
+        let response = axios.get(
+            'http://localhost:8081/monosurance/allNewCustomer',
+            {
+                params: {
+                    pageNumber,
+                    pageSize
+                }
+                ,
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('auth')
+                }
+            }
+
+        )
+
+        return response;
+
+    }
+    catch (error) {
+        throw error;
+    }
 
 }

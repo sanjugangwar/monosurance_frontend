@@ -6,6 +6,8 @@ import Footer from '../navbar/Footer';
 import PaginationApp from '../table/PaginationApp'
 import PageSelect from '../table/PageSelect'
 import AddEmployee from './AddEmployee';
+import { useNavigate } from 'react-router-dom';
+import { successAlet, warningAlert } from '../alerts/Alert';
 
 const AllEmployee = () => {
 
@@ -36,9 +38,16 @@ const AllEmployee = () => {
     let data = {}
 
     const addEmployeeHandler = async () => {
-
-        let response = await saveEmployee(data);
-        console.log(response);
+        try {
+            let response = await saveEmployee(data);
+            console.log(response);
+            setActionData(response);
+            if (response)
+                successAlet("employee saved ")
+        }
+        catch (error) {
+            warningAlert(error?.response?.data?.message)
+        }
 
     }
 
@@ -88,25 +97,38 @@ const AllEmployee = () => {
 
 
     const getEmployeesData = async () => {
+        try {
+            let response = await getAllEmployees(pageNumber, pageSize)
+            let x=response.data.content.map(
+                (a)=>{
+                    a['joiningDate']=a['joiningDate'].substr(0,10)
+                    return a;
+                }
+            );
+            setEmployeeData(x);
+            setTotalPages(Math.ceil(parseInt(response.headers['employee-count']) / pageSize));
+            setTotalElements(Math.ceil(parseInt(response.headers['employee-count']) / pageSize));
+            console.log(response);
 
-        let response = await getAllEmployees(pageNumber, pageSize)
-        setEmployeeData(response.data.content);
-        setTotalPages(Math.ceil(parseInt(response.headers['employee-count']) / pageSize));
-        setTotalElements(Math.ceil(parseInt(response.headers['employee-count']) / pageSize));
-
-        console.log(response);
+        }
+        catch (error) {
+            warningAlert(error?.response?.data?.message)
+        }
 
 
     }
 
     const handleDelete = async (employee) => {
-
-        let response = await deleteEmployee(employee.employeeId)
-
-        setActionData(response);
-
-
-
+        try {
+            let response = await deleteEmployee(employee.employeeId)
+            setActionData(response);
+            if(response){
+                successAlet("employee deleted")
+            }
+        }
+        catch(error){
+            warningAlert(error?.response?.data?.message)
+        }
     }
 
     useEffect(
@@ -115,11 +137,14 @@ const AllEmployee = () => {
         }
         , [pageNumber, pageSize, totalPages, totalElements, actionData])
 
+    const navigate = new useNavigate();
+
     return (
         <>
             <Navbar></Navbar>
+            <div className='tec text-center display-3 py-3 text1 fw-bold background2 text-white'>All Employees</div>
             <AddEmployee data={addEmployeeData}></AddEmployee>
-            <div className='container'>
+            <div className='container-fluid'>
                 <div className='row'>
                     {/* <div className='col-2 mt-5'>
                         <button className='border-0'>
@@ -156,10 +181,38 @@ const AllEmployee = () => {
 
                     </div> */}
 
-                    <div className='col-12'>
+                    <div className='col-2 mt-4'>
+
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold '
+
+                            onClick={
+                                () => {
+                                    setShow(true)
+                                }
+                            }
+
+                        >
+                            Add A Employee
+                        </button>
+                        <button className='fs-1 btn btn-lg border-0 customButton fw-bold  mt-3'
+
+                            onClick={
+                                () => {
+                                    navigate('/admin')
+                                }
+                            }
+                        >
+                            Go To Dashboard
+                        </button>
+
+                    </div>
 
 
-                        <div className='tec text-center display-3 py-3 text1 fw-bold'>All Employees</div>
+
+                    <div className='col-8 offset-1'>
+
+
+
                         <div>
                             <div className='container'>
                                 <div className='row my-5'>
@@ -174,9 +227,9 @@ const AllEmployee = () => {
                                     </div>
                                     <div className='col-4'>
 
-                                        <input className='rounded-pill px-3 text-primary fw-bold'
+                                        {/* <input className='rounded-pill px-3 text-primary fw-bold'
                                             placeholder='search here'
-                                        ></input>
+                                        ></input> */}
 
                                     </div>
                                     <div className='col-2 offset-2'>
@@ -195,11 +248,11 @@ const AllEmployee = () => {
 
                                     <div className='col-12'>
 
-                                        <button className='btn btn-lg btn-outline-primary fw-bold'
+                                        {/* <button className='btn btn-lg btn-outline-primary fw-bold'
                                             onClick={() => setShow(true)}
                                         >
                                             Add A New Employee
-                                        </button>
+                                        </button> */}
 
                                     </div>
 

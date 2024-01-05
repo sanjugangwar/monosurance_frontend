@@ -166,3 +166,28 @@ export const agentClaim=async (data)=>{
 
     }
 }
+
+export const getAgentPolicy=async(pageNumber,agentId)=>{
+    try {
+        let response = await axios.get(
+            'http://localhost:8081/monosurance/policyByAgentid',
+            {
+                params: {
+                   pageNumber,
+                   agentId
+                }
+                ,
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('auth')
+                }
+            }
+
+        )
+
+        return response;
+
+    }
+    catch (error) {
+        throw error;
+    }
+}

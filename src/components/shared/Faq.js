@@ -15,7 +15,7 @@ const Faq = () => {
 
                         <div class="col-12">
                             <div class="accordion my-5" id="accordionExample">
-                                <div class="accordion-item rounded-pill">
+                                <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -25,16 +25,16 @@ const Faq = () => {
                                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <strong>This is the first item's accordion body.</strong> It is shown by default,
-                                            until the collapse plugin adds the appropriate classes that we use to style each
-                                            element. These classes control the overall appearance, as well as the showing and
-                                            hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                            our default variables. It's also worth noting that just about any HTML can go within
-                                            the <code>.accordion-body</code>, though the transition does limit overflow.
+                                            Embark on a worry-free journey with our diverse range of insurance solutions,
+                                            meticulously crafted to cater to your every need. Whether it's safeguarding your home, car,
+                                            health, or securing the future of your loved ones, we've got you covered. Our commitment extends beyond just policies;
+                                            it's about providing peace of mind and a sense of security. With customizable options and dedicated customer support,
+                                            we ensure that you experience the freedom to live life to the fullest,
+                                            confident that we are your reliable partner in protection. Choose us, and let's navigate life's uncertainties together.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item rounded-pill">
+                                <div class="accordion-item ">
                                     <h2 class="accordion-header" id="headingTwo">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -44,16 +44,17 @@ const Faq = () => {
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                            until the collapse plugin adds the appropriate classes that we use to style each
-                                            element. These classes control the overall appearance, as well as the showing and
-                                            hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                            our default variables. It's also worth noting that just about any HTML can go within
-                                            the <code>.accordion-body</code>, though the transition does limit overflow.
+                                            Absolutely! Your security is our utmost priority. 
+                                            We employ state-of-the-art encryption protocols and secure transactions 
+                                            to ensure that your card information is handled with the highest level of 
+                                            protection on our website. Rest assured, your financial data is safeguarded, 
+                                            and you can confidently use our platform for secure transactions.
+                                             Your trust in us is the foundation of our commitment to providing a 
+                                             safe and reliable experience for all our users.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item rounded-pill">
+                                <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingThree">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -63,12 +64,12 @@ const Faq = () => {
                                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                                            until the collapse plugin adds the appropriate classes that we use to style each
-                                            element. These classes control the overall appearance, as well as the showing and
-                                            hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                            our default variables. It's also worth noting that just about any HTML can go within
-                                            the <code>.accordion-body</code>, though the transition does limit overflow.
+                                            Certainly! "Experience peace of mind and financial security with our trusted insurance solutions.
+                                            From comprehensive coverage for your home and vehicle to life and health protection,
+                                            we've got the right plans tailored just for you.
+                                            Join our community of satisfied customers who enjoy not just reliable insurance
+                                            but also personalized service and peace of mind. Your journey
+                                            to worry-free living starts here – choose us for the assurance you deserve."
                                         </div>
                                     </div>
                                 </div>

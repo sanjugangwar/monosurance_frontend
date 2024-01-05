@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom'
 const Employee = () => {
 
     const [valid, setValid] = useState(false);
-    const navigate=new useNavigate();
+    const navigate = new useNavigate();
 
     const validateUser = () => {
         if (localStorage.getItem('token') == null || localStorage.getItem('role') == null || localStorage.getItem('role') != 'ROLE_EMPLOYEE') {
@@ -24,10 +24,10 @@ const Employee = () => {
     }
 
     useEffect(
-        ()=>{
+        () => {
             // validateUser();
         }
-        ,[]
+        , []
     )
 
     return (
@@ -39,124 +39,134 @@ const Employee = () => {
                 <div className='row my-5'>
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={profile} className='rounded-pill'
-                                    style={{
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Profile</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={
-                                        ()=>{
-                                            navigate('/employee/profile')
-                                        }
+                            <button className='btn btn-lg customBtn'
+
+                                onClick={
+                                    () => {
+                                        navigate('/employee/profile')
                                     }
+                                }
 
-                                    >View More</button>
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={profile} className='rounded-pill'
+                                        style={{
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1 ms-3'>Profile</div>
+
+                                    </div>
+
                                 </div>
-
-                            </div>
+                            </button>
                         </div>
                     </div>
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={agents} className=' img-fluid pe-5'
-                                    style={{
+                            <button className='btn btn-lg customBtn'
 
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Agents</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={
-                                        ()=>{
-                                          navigate('/allAgents')  
-                                        }
+                                onClick={
+                                    () => {
+                                        navigate('/allAgents')
                                     }
+                                }
 
-                                    >View More</button>
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={agents} className=' img-fluid pe-5'
+                                        style={{
+
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1'>Agents</div>
+
+                                    </div>
+
                                 </div>
-
-                            </div>
+                            </button>
                         </div>
                     </div>
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={docoument} className='rounded-pill'
-                                    style={{
+                            <button className='btn btn-lg customBtn'
 
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'> Approve Documents</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={()=>{
-                                        navigate('/employee/approve')
-                                    }}
+                                onClick={() => {
+                                    navigate('/employee/approve')
+                                }}
 
-                                    >View More</button>
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={docoument} className='rounded-pill'
+                                        style={{
+
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1'> Approve Documents</div>
+
+                                    </div>
+
                                 </div>
-
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div className='row my-5 justify-content-center'>
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={insurace_account} className='rounded-pill'
-                                    style={{
+                            <button className='btn btn-lg customBtn'
 
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Insurance Accounts</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={
-                                        ()=>{
-                                            navigate('/employee/accounts')
-                                        }
+                                onClick={
+                                    () => {
+                                        navigate('/employee/accounts')
                                     }
-                                    
-                                    >View More</button>
-                                </div>
+                                }
 
-                            </div>
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={insurace_account} className='rounded-pill'
+                                        style={{
+
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1'>Insurance Accounts</div>
+
+                                    </div>
+
+                                </div>
+                            </button>
                         </div>
                     </div>
                     <div className='col-4'>
                         <div class="card d-flex ">
-                            <div class="card-body d-flex align-items-center">
-                                <img src={queries} className='rounded-pill'
-                                    style={{
+                            <button className='btn btn-lg customBtn'
 
-                                        height: "10rem",
-                                        width: "10rem"
-                                    }} />
-                                <div className='d-block '>
-                                    <div className='text2 fw-bold fs-1'>Customer Queries</div>
-                                    <button className='btn btn-lg btn-outline-success'
-                                    
-                                    onClick={
-                                        ()=>navigate('/employee/queries')
-                                    }
+                                onClick={
+                                    () => navigate('/employee/queries')
+                                }
 
-                                    >View More</button>
+                            >
+                                <div class="card-body d-flex align-items-center">
+                                    <img src={queries} className='rounded-pill'
+                                        style={{
+
+                                            height: "10rem",
+                                            width: "10rem"
+                                        }} />
+                                    <div className='d-block '>
+                                        <div className='text2 fw-bold fs-1'>Customer Queries</div>
+
+                                    </div>
+
                                 </div>
-
-                            </div>
+                            </button>
                         </div>
                     </div>
                     {/* <div className='col-4'>
@@ -181,7 +191,7 @@ const Employee = () => {
 
             <Footer></Footer>
 
-        </div>
+        </div >
     )
 }
 

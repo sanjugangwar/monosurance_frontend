@@ -59,13 +59,13 @@ const Footer = () => {
                                     <a href="/" className="text-reset">Home</a>
                                 </p>
                                 <p>
-                                    <a href="#" className="text-reset">Plans</a>
+                                    <a href="/plans" className="text-reset">Plans</a>
                                 </p>
                                 <p>
-                                    <a href="#!" className="text-reset">About Us</a>
+                                    <a href="/about" className="text-reset">About Us</a>
                                 </p>
                                 <p>
-                                    <a href="#!" className="text-reset">About Us</a>
+                                    <a href="/contact" className="text-reset">Contact Us</a>
                                 </p>
                                 
                             </div>
@@ -76,10 +76,10 @@ const Footer = () => {
                                 <p><i className="fas fa-home me-3"></i> Gurgaon</p>
                                 <p>
                                     <i className="fas fa-envelope me-3"></i>
-                                    mono@gmail.com
+                                    monomail07@gmail.com
                                 </p>
-                                <p><i className="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                                <p><i className="fas fa-print me-3"></i> + 01 234 567 89</p>
+                                <p><i className="fas fa-phone me-3"></i> + 91 9318441731</p>
+                                <p><i className="fas fa-print me-3"></i> + 91 9971087905</p>
                             </div>
                        
                         </div>
